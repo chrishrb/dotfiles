@@ -103,9 +103,17 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 fpath=(~/.zsh.d/ $fpath)
 
-#Fuzzy Finder
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
+#Fuzzy Finder (on linux another path)
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+  # Linux
+  source /usr/share/doc/fzf/examples/key-bindings.zsh
+  source /usr/share/doc/fzf/examples/completion.zsh
+else
+  # Macos
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+fi
 
 export FZF_DEFAULT_OPTS="
 --layout=reverse
