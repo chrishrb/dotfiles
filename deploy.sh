@@ -80,6 +80,8 @@ check_for_software fzf
 echo
 check_for_software xclip
 echo
+check_for_software sdkman
+echo
 
 check_default_shell
 
@@ -117,4 +119,5 @@ git config --global include.path "$PWD/zsh/gitconfig"
 
 
 echo
+echo "Please run '/usr/local/opt/fzf/install' for fzf (fuzzy finder and reverse search) autocompletion"
 echo "Please log out and log back in for default shell to be initialized."
