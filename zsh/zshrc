@@ -101,6 +101,7 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
+
 fpath=(~/.zsh.d/ $fpath)
 
 #Fuzzy Finder (on linux another path)
@@ -128,3 +129,10 @@ export FZF_DEFAULT_OPTS="
 --bind 'ctrl-y:execute-silent(echo {+} | pbcopy)'
 --bind 'ctrl-e:execute(echo {+} | vim -)'
 "
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/cherb/.sdkman"
+[[ -s "/Users/cherb/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/cherb/.sdkman/bin/sdkman-init.sh"
+
+# ITO specific
+export SENCHA_EXECUTABLE=/opt/Sencha/Cmd/sencha

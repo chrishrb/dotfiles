@@ -1,3 +1,8 @@
+#!/bin/bash
+
+DOTFILES_DIR=$(git rev-parse --show-toplevel)
+
+# Util Func{{{
 prompt_install() {
 	echo -n "$1 is not installed. Would you like to install it? (y/n) " >&2
 	old_stty_cfg=$(stty -g)
@@ -19,7 +24,7 @@ prompt_install() {
 			sudo pacman -S $1
 
 		else
-			echo "I'm not sure what your package manager is! Please install $1 on your own and run this deploy script again. Tests for package managers are in the deploy script you just ran starting at line 13. Feel free to make a pull request at https://github.com/parth/dotfiles :)" 
+			echo "I'm not sure what your package manager is! Please install $1 on your own and run this deploy script again. Tests for package managers are in the deploy script you just ran starting at line 13." 
 		fi 
 	fi
 }
@@ -50,74 +55,68 @@ check_default_shell() {
 	fi
 }
 
-echo "We're going to do the following:"
-echo "1. Grab dependencies"
-echo "2. Check to make sure you have zsh, vim, and tmux installed"
-echo "3. We'll help you install them if you don't"
-echo "4. We're going to check to see if your default shell is zsh"
-echo "5. We'll try to change it if it's not" 
+# $1 FROM, $2 TO
+setup_symlink() {
+    if [[ "$2" == *"/"* ]]; then
+        DIR=$(echo "$2" | grep -o ".*\/")
+        mkdir -p "$HOME/$DIR"
+    fi
+    ln -sf "$DOTFILES_DIR/$1" "$HOME/$2"
+}
 
-echo "Let's get started? (y/n)"
-old_stty_cfg=$(stty -g)
-stty raw -echo
-answer=$( while ! head -c 1 | grep -i '[ny]' ;do true ;done )
-stty $old_stty_cfg
-if echo "$answer" | grep -iq "^y" ;then
-	echo 
-else
-	echo "Quitting, nothing was changed."
-	exit 0
-fi
+# $1 FROM, $2 TO
+setup_copy() {
+    if [[ "$2" == *"/"* ]]; then
+        DIR=$(echo "$2" | grep -o ".*\/")
+        mkdir -p "$HOME/$DIR"
+    fi
+    cp -rf "$DOTFILES_DIR/$1" "$HOME/$2"
+}
+#}}}
+
+setup_nvim() { #{{{
+		check_for_software nvim
+
+} #}}}
+
+setup_zsh() { #{{{
+		check_for_software zsh
+		check_for_software fzf
+		if ! [ -x "$(command -v fzf)" ]; then
+				/usr/local/opt/fzf/install
+		fi
+		check_for_software xclip
+		setup_symlink zsh/zshrc .zshrc
+		check_default_shell
+} #}}}
+
+setup_tmux() { #{{{
+		check_for_software tmux
+} #}}}
+
+setup_programms() { #{{{
+		echo "empty"
+
+} #}}}
+
+setup_dotfiles() { #{{{
+		echo "Setup ideavimrc"
+		setup_symlink idea/ideavimrc .ideavimrc
+
+		echo "Set Git Config and Aliases"
+		git config --global include.path "$DOTFILES_DIR/zsh/gitconfig"
+} #}}}
+
 
 git submodule update --init --recursive
-check_for_software zsh
-echo 
-check_for_software vim
-echo
-check_for_software tmux
-echo
-check_for_software fzf
-echo
-check_for_software xclip
-echo
-check_for_software sdkman
-echo
 
-check_default_shell
-
-echo
-echo -n "Would you like to backup your current dotfiles? (y/n) "
-old_stty_cfg=$(stty -g)
-stty raw -echo
-answer=$( while ! head -c 1 | grep -i '[ny]' ;do true ;done )
-stty $old_stty_cfg
-if echo "$answer" | grep -iq "^y" ;then
-	test -f ~/.zshrc && mv ~/.zshrc ~/.zshrc.old
-	test -f ~/.tmux.conf && mv ~/.tmux.conf ~/.tmux.conf.old
-	test -f ~/.vimrc && mv ~/.vimrc ~/.vimrc.old
-	test -f ~/.tmux.conf.local && rm ~/.tmux.conf.local
-else
-	echo -e "\nNot backing up old dotfiles."
-  test -f ~/.zshrc && rm ~/.zshrc
-  test -f ~/.tmux.conf && rm ~/.tmux.conf
-  test -f ~/.vimrc && rm ~/.vimrc
-
-  test -f ~/.tmux.conf.local && rm ~/.tmux.conf.local
-  test -f ~/.ideavimrc && rm ~/.ideavimrc
+if [ "$1" = 'dotfiles' ]; then
+    setup_dotfiles
+elif [ "$1" = 'zsh' ]; then
+    setup_zsh
+		echo "Please log out and log back in for default shell to be initialized."
+elif [ "$1" = 'tmux' ]; then
+    setup_tmux
+elif [ "$1" = 'vim' ]; then
+    setup_nvim
 fi
-
-ln -s ~/dotfiles/zsh/zshrc_manager.sh ~/.zshrc
-ln -s ~/dotfiles/vim/vimrc.vim ~/.vimrc
-ln -s ~/dotfiles/tmux/.tmux/.tmux.conf ~/.tmux.conf
-
-ln -s ~/dotfiles/tmux/tmux.conf.local ~/.tmux.conf.local
-ln -s ~/dotfiles/idea/ideavimrc ~/.ideavimrc
-
-echo
-echo "Set Git Config and Aliases"
-git config --global include.path "$PWD/zsh/gitconfig"
-
-
-echo
-echo "Please run '/usr/local/opt/fzf/install' for fzf (fuzzy finder and reverse search) autocompletion"
-echo "Please log out and log back in for default shell to be initialized."
