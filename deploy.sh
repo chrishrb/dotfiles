@@ -29,6 +29,23 @@ prompt_install() {
 	fi
 }
 
+check_for_sdkman() {
+	echo "Checking to see if sdkman is installed"
+	FILE=$HOME/.sdkman/bin/sdkman-init.sh
+	if ! [ -f "$FILE" ]; then
+		echo -n "sdkman is not installed. Would you like to install it? (y/n) " >&2
+		old_stty_cfg=$(stty -g)
+		stty raw -echo
+		answer=$( while ! head -c 1 | grep -i '[ny]' ;do true ;done )
+		stty $old_stty_cfg && echo
+		if echo "$answer" | grep -iq "^y" ;then
+			curl -s "https://get.sdkman.io?rcupdate=false" | bash
+		fi
+	else
+		echo "sdkman is installed."
+	fi
+}
+
 check_for_software() {
 	echo "Checking to see if $1 is installed"
 	if ! [ -x "$(command -v $1)" ]; then
@@ -76,7 +93,8 @@ setup_copy() {
 
 setup_nvim() { #{{{
 		check_for_software nvim
-
+		setup_symlink nvim/lua .config/nvim/lua
+		setup_symlink nvim/init.lua .config/nvim/init.lua
 } #}}}
 
 setup_zsh() { #{{{
@@ -94,9 +112,8 @@ setup_tmux() { #{{{
 		check_for_software tmux
 } #}}}
 
-setup_programms() { #{{{
-		echo "empty"
-
+setup_software() { #{{{
+		check_for_sdkman
 } #}}}
 
 setup_dotfiles() { #{{{
@@ -119,4 +136,8 @@ elif [ "$1" = 'tmux' ]; then
     setup_tmux
 elif [ "$1" = 'vim' ]; then
     setup_nvim
+elif [ "$1" = 'software' ]; then
+    setup_software
+else
+		echo "Command not found"
 fi
