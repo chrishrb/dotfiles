@@ -127,10 +127,13 @@ local mappings = {
       "Diff",
     },
   },
-
+  r = {
+    name = "Refactoring",
+    r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+  },
+  ["n"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
   l = {
     name = "LSP",
-    a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
     d = {
       "<cmd>Telescope lsp_document_diagnostics<cr>",
       "Document Diagnostics",
@@ -152,7 +155,6 @@ local mappings = {
     },
     l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
     q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
-    r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
     s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
     S = {
       "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",

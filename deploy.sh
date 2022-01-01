@@ -124,20 +124,30 @@ setup_dotfiles() { #{{{
 		git config --global include.path "$DOTFILES_DIR/zsh/gitconfig"
 } #}}}
 
+setup_kitty() { #{{{
+		setup_symlink kitty .config/kitty
+} #}}}
 
 git submodule update --init --recursive
 
 if [ "$1" = 'dotfiles' ]; then
     setup_dotfiles
+    echo "dotfiles ready"
+elif [ "$1" = 'kitty' ]; then
+    setup_kitty
+    echo "kitty ready"
 elif [ "$1" = 'zsh' ]; then
     setup_zsh
 		echo "Please log out and log back in for default shell to be initialized."
 elif [ "$1" = 'tmux' ]; then
     setup_tmux
+    echo "tmux ready"
 elif [ "$1" = 'vim' ]; then
     setup_nvim
+    echo "nvim ready"
 elif [ "$1" = 'software' ]; then
     setup_software
+    echo "all software ready"
 else
 		echo "Command not found"
 fi

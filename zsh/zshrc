@@ -10,6 +10,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 
 # }}}
+
 # {{{Oh-my-ZSH
 
 # Set name of the theme to load --- if set to "random", it will
@@ -31,11 +32,9 @@ source $ZSH/oh-my-zsh.sh
 fpath=(~/.zsh.d/ $fpath)
 # }}}
 
-
-
 # {{{Functions
-nvim-light () { # {{{
-    nvim --cmd "let g:vim_mode = 'light'" ${1}
+vim-light () { # {{{
+    nvim --cmd "let g:tokyonight_style = 'day'" ${1}
 }
 # }}}
 

@@ -40,7 +40,7 @@ keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
 -- Remap jj to Esc
-vim.cmd "imap jj <Esc>"
+keymap("i", "jj", "<Esc>", opts)
 
 -- Visual --
 -- Stay in indent mode
