@@ -110,6 +110,8 @@ setup_zsh() { #{{{
 
 setup_tmux() { #{{{
 		check_for_software tmux
+    setup_symlink tmux/.tmux/.tmux.conf .tmux.conf
+    setup_symlink tmux/tmux.conf.local .tmux.conf.local
 } #}}}
 
 setup_software() { #{{{
