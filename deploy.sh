@@ -110,8 +110,11 @@ setup_zsh() { #{{{
 
 setup_tmux() { #{{{
 		check_for_software tmux
-    setup_symlink tmux/.tmux/.tmux.conf .tmux.conf
-    setup_symlink tmux/tmux.conf.local .tmux.conf.local
+    # only on mac
+		if [ -x "$(command -v brew)" ]; then
+      check_for_software reattach-to-user-namespace
+    fi
+    setup_symlink tmux/tmux.conf .tmux.conf
 } #}}}
 
 setup_software() { #{{{
