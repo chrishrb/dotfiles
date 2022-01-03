@@ -58,6 +58,21 @@ return packer.startup(function(use)
   use "goolord/alpha-nvim"
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "folke/which-key.nvim"
+  use "ethanholz/nvim-lastplace"
+  use { 'alexghergh/nvim-tmux-navigation', config = function()
+        require'nvim-tmux-navigation'.setup {
+            disable_when_zoomed = false, -- defaults to false
+            keybindings = {
+                left = "<C-h>",
+                down = "<C-j>",
+                up = "<C-k>",
+                right = "<C-l>",
+                last_active = "<C-\\>",
+                next = "<C-Space>",
+            }
+        }
+    end
+  }
 
   -- Colorschemes
   --use "lunarvim/darkplus.nvim"

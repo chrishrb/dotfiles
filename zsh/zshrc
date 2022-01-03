@@ -3,6 +3,7 @@
 export ZSH="$HOME/dotfiles/zsh/oh-my-zsh"
 
 export EDITOR="nvim"
+export TERM="xterm-kitty"
 
 # Go and Rust
 export PATH="$HOME/go/bin:$PATH"
