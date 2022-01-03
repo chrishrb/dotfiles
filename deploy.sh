@@ -110,9 +110,12 @@ setup_zsh() { #{{{
 
 setup_tmux() { #{{{
 		check_for_software tmux
-    # only on mac
+    check_for_software gawk coreutils
+    # system specific
 		if [ -x "$(command -v brew)" ]; then
       check_for_software reattach-to-user-namespace
+    else
+      check_for_software net-tools
     fi
     setup_symlink tmux/tmux.conf .tmux.conf
 } #}}}
