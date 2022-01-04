@@ -92,7 +92,7 @@ setup_copy() {
 #}}}
 
 setup_nvim() { #{{{
-		check_for_software nvim
+		check_for_software nvim ripgrep
 		setup_symlink nvim/lua .config/nvim/lua
 		setup_symlink nvim/init.lua .config/nvim/init.lua
 } #}}}
@@ -120,9 +120,14 @@ setup_tmux() { #{{{
     setup_symlink tmux/tmux.conf .tmux.conf
 } #}}}
 
-setup_software() { #{{{
+#{{{ setup_software
+setup_software() { 
 		check_for_sdkman
-} #}}}
+    check_for_software rust
+    check_for_software go
+} 
+
+#}}}
 
 setup_dotfiles() { #{{{
 		echo "Setup ideavimrc"

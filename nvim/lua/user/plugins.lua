@@ -59,6 +59,8 @@ return packer.startup(function(use)
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "folke/which-key.nvim"
   use "ethanholz/nvim-lastplace"
+  use "tpope/vim-surround"
+  use 'justinmk/vim-sneak'
   use { 'alexghergh/nvim-tmux-navigation', config = function()
         require'nvim-tmux-navigation'.setup {
             disable_when_zoomed = false, -- defaults to false
@@ -95,8 +97,7 @@ return packer.startup(function(use)
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
-  use 'RishabhRD/popfix'
-  use 'RishabhRD/nvim-lsputils'
+  use 'tami5/lspsaga.nvim'
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
