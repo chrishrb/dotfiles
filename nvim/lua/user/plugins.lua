@@ -64,6 +64,7 @@ return packer.startup(function(use)
   --use "ethanholz/nvim-lastplace"
   use "tpope/vim-surround"
   use 'justinmk/vim-sneak'
+  use "vim-scripts/BufOnly.vim"
   use { 'alexghergh/nvim-tmux-navigation', config = function()
         require'nvim-tmux-navigation'.setup {
             disable_when_zoomed = false, -- defaults to false
@@ -115,6 +116,7 @@ return packer.startup(function(use)
 
   -- Git
   use "lewis6991/gitsigns.nvim"
+  use 'tpope/vim-fugitive'
 
   -- Autosave
   use "Pocco81/AutoSave.nvim"

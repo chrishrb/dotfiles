@@ -8,8 +8,12 @@
     diff = auto
     interactive = true
     status = auto
+[mergetool "nvim"]
+    cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 [merge]
-    tool = kdiff3
+    tool = nvim
+[mergetool]
+    prompt = false
 [rerere]
     enabled = false
     autoupdate = false
