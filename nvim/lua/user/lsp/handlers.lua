@@ -15,7 +15,7 @@ M.setup = function()
 
   local config = {
     -- disable virtual text
-    virtual_text = false,
+    virtual_text = true,
     -- show signs
     signs = {
       active = signs,
@@ -73,8 +73,8 @@ local function lsp_keymaps(bufnr)
 
   map(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<cr>", opts)
   map(bufnr, "n", "<leader>rr", "<cmd>Lspsaga rename<cr>", opts)
-  map(bufnr, "n", "<leader>n", "<cmd>Lspsaga code_action<cr>", opts)
-  map(bufnr, "n", "<leader>n", ":<c-u>Lspsaga range_code_action<cr>", opts)
+  -- map(bufnr, "n", "<leader>n", "<cmd>Lspsaga code_action<cr>", opts)
+  -- map(bufnr, "n", "<leader>n", ":<c-u>Lspsaga range_code_action<cr>", opts)
   map(bufnr, "n", "gl", "<cmd>Lspsaga show_line_diagnostics<cr>", opts)
   map(bufnr, "n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opts)
   map(bufnr, "n", "]d", "<cmd>Lspsaga diagnostic_jump_next<cr>", opts)

@@ -15,13 +15,16 @@ if fn.empty(fn.glob(install_path)) > 0 then
   vim.cmd [[packadd packer.nvim]]
 end
 
+-- With autosave that doesnt make sense..
+-- manually run command :PackerSync
+
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]]
+-- vim.cmd [[
+--   augroup packer_user_config
+--     autocmd!
+--     autocmd BufWritePost plugins.lua source <afile> | PackerSync
+--   augroup end
+-- ]]
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
@@ -58,7 +61,7 @@ return packer.startup(function(use)
   use "goolord/alpha-nvim"
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "folke/which-key.nvim"
-  use "ethanholz/nvim-lastplace"
+  --use "ethanholz/nvim-lastplace"
   use "tpope/vim-surround"
   use 'justinmk/vim-sneak'
   use { 'alexghergh/nvim-tmux-navigation', config = function()
@@ -79,6 +82,7 @@ return packer.startup(function(use)
   -- Colorschemes
   --use "lunarvim/darkplus.nvim"
   use 'folke/tokyonight.nvim'
+  use "projekt0n/github-nvim-theme"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -96,7 +100,7 @@ return packer.startup(function(use)
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
-  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+  -- use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
   use 'tami5/lspsaga.nvim'
 
   -- Telescope
@@ -111,6 +115,13 @@ return packer.startup(function(use)
 
   -- Git
   use "lewis6991/gitsigns.nvim"
+
+  -- Autosave
+  use "Pocco81/AutoSave.nvim"
+
+  -- Markdown Preview
+  -- :call mkdp#util#install()
+  use 'iamcco/markdown-preview.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

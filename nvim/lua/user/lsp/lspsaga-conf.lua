@@ -2,7 +2,6 @@ local status_ok, _ = pcall(require, "lspsaga")
 if not status_ok then
   return
 end
-print("cooll")
 
 local lspsaga = require 'lspsaga'
 lspsaga.setup {

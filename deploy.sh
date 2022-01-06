@@ -2,7 +2,7 @@
 
 DOTFILES_DIR=$(git rev-parse --show-toplevel)
 
-# Util Func{{{
+# {{{util func
 prompt_install() {
 	echo -n "$1 is not installed. Would you like to install it? (y/n) " >&2
 	old_stty_cfg=$(stty -g)
@@ -43,6 +43,39 @@ check_for_sdkman() {
 		fi
 	else
 		echo "sdkman is installed."
+	fi
+}
+
+check_for_basictex() {
+	echo "Checking to see if basictex is installed"
+	if ! [ -x "$(command -v latexmk)" ]; then
+		echo -n "basictex is not installed. Would you like to install it? (y/n) " >&2
+		old_stty_cfg=$(stty -g)
+		stty raw -echo
+		answer=$( while ! head -c 1 | grep -i '[ny]' ;do true ;done )
+		stty $old_stty_cfg && echo
+		if echo "$answer" | grep -iq "^y" ;then
+		  if [ -x "$(command -v brew)" ]; then
+        # install tex
+        brew install --cask basictex
+        eval "$(/usr/libexec/path_helper)"
+
+        # update
+        sudo tlmgr update --self && sudo tlmgr update --all
+
+        # install font
+        curl https://www.tug.org/fonts/getnonfreefonts/install-getnonfreefonts > /tmp/install-getnonfreefonts
+        sudo texlua /tmp/install-getnonfreefonts
+        sudo getnonfreefonts --sys -a
+
+        # install dependencies
+        sudo tlmgr install latexmk ucs sectsty apacite titling blindtext todonotes texcount
+      else
+        echo "Brew not installed or you are not on mac env. Please install basictex manually."
+      fi
+		fi
+	else
+		echo "basictex is installed."
 	fi
 }
 
@@ -120,14 +153,20 @@ setup_tmux() { #{{{
     setup_symlink tmux/tmux.conf .tmux.conf
 } #}}}
 
-#{{{ setup_software
-setup_software() { 
+setup_tmuxinator() { #{{{
+  check_for_software tmuxinator
+  setup_symlink tmuxinator/config .config/tmuxinator
+} # }}}
+
+setup_latex() { #{{{
+  check_for_basictex
+} # }}}
+
+setup_software() { #{{{
 		check_for_sdkman
     check_for_software rust
     check_for_software go
-} 
-
-#}}}
+} #}}}
 
 setup_dotfiles() { #{{{
 		echo "Setup ideavimrc"
@@ -149,15 +188,23 @@ if [ "$1" = 'dotfiles' ]; then
 elif [ "$1" = 'kitty' ]; then
     setup_kitty
     echo "kitty ready"
+elif [ "$1" = 'keyboard' ]; then
+    echo "Install https://github.com/MickL/macos-keyboard-layout-german-programming"
 elif [ "$1" = 'zsh' ]; then
     setup_zsh
 		echo "Please log out and log back in for default shell to be initialized."
 elif [ "$1" = 'tmux' ]; then
     setup_tmux
     echo "tmux ready"
-elif [ "$1" = 'vim' ]; then
+elif [ "$1" = 'tmuxinator' ]; then
+    setup_tmuxinator
+    echo "tmuxinator ready"
+elif [ "$1" = 'nvim' ]; then
     setup_nvim
     echo "nvim ready"
+elif [ "$1" = 'latex' ]; then
+    setup_latex
+    echo "latex ready"
 elif [ "$1" = 'software' ]; then
     setup_software
     echo "all software ready"

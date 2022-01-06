@@ -11,7 +11,29 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 # }}}
 
-# {{{Oh-my-ZSH
+# {{{aliases
+## navigation aliases
+alias dev="cd ~/dev/"
+alias home="cd ~/dev/home"
+alias study="cd ~/dev/study"
+alias work="cd ~/dev/work"
+
+## other
+alias du='du -sh'
+alias df='df -h'
+alias ffs='sudo !!'
+
+## vim
+alias vim='nvim'
+alias v='nvim'
+alias tmx=tmuxinator
+alias zshconfig="nvim ~/.zshrc"
+alias zshreload="source ~/.zshrc"
+alias myip='curl http://ipecho.net/plain; echo'
+
+# }}}
+
+# {{{oh-my-zsh
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -25,6 +47,7 @@ plugins=(
   dnf
   zsh-syntax-highlighting
   zsh-autosuggestions
+  tmuxinator
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -32,24 +55,19 @@ source $ZSH/oh-my-zsh.sh
 fpath=(~/.zsh.d/ $fpath)
 # }}}
 
-# {{{Functions
+# {{{functions
 vim-light () { # {{{
     nvim --cmd "let g:tokyonight_style = 'day'" ${1}
 }
 # }}}
-
-# {{{Aliases
-alias du='du -sh'
-alias df='df -h'
-alias vim='nvim'
 # }}}
 
-# {{{Work specific
+# {{{work specific
 export SENCHA_EXECUTABLE=/opt/Sencha/Cmd/sencha
 # }}}
 
-# {{{Plugins
-## {{{FuzzyFinder
+# {{{plugins
+## {{{fuzzyfinder
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
   # Linux
@@ -76,7 +94,7 @@ export FZF_DEFAULT_OPTS="
 "
 ## }}}
 
-## {{{Sdkman
+## {{{sdkman
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/cherb/.sdkman"
 [[ -s "/Users/cherb/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/cherb/.sdkman/bin/sdkman-init.sh"
