@@ -22,14 +22,17 @@ alias work="cd ~/dev/work"
 alias du='du -sh'
 alias df='df -h'
 alias ffs='sudo !!'
+alias myip='curl http://ipecho.net/plain; echo'
+alias c="cht.sh"
+alias copy="pbcopy"
+alias brewup="brew update; brew upgrade; brew cleanup; brew doctor"
 
-## vim
+## vim,tmux,zsh
 alias vim='nvim'
 alias v='nvim'
 alias tmx=tmuxinator
 alias zshconfig="nvim ~/.zshrc"
 alias zshreload="source ~/.zshrc"
-alias myip='curl http://ipecho.net/plain; echo'
 
 # }}}
 
@@ -60,6 +63,19 @@ vim-light () { # {{{
     nvim --cmd "let g:tokyonight_style = 'day'" ${1}
 }
 # }}}
+
+google() { # {{{
+    local s="$_"
+    local query=
+
+    case "$1" in
+        '')   ;;
+        that) query="search?q=${s//[[:space:]]/+}" ;;
+        *)    s="$*"; query="search?q=${s//[[:space:]]/+}" ;;
+    esac
+
+    open /Applications/Google\ Chrome.app/ "http://www.google.com/${query}"
+} # }}}
 # }}}
 
 # {{{work specific
