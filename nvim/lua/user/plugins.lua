@@ -32,6 +32,9 @@ if not status_ok then
   return
 end
 
+-- fetch packer_compiled
+pcall(require, "packer_compiled")
+
 -- Have packer use a popup window
 packer.init {
   display = {
@@ -42,7 +45,7 @@ packer.init {
 }
 
 -- Install your plugins here
-return packer.startup(function(use)
+return packer.startup({function(use)
   -- My plugins here
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
@@ -61,7 +64,6 @@ return packer.startup(function(use)
   use "goolord/alpha-nvim"
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "folke/which-key.nvim"
-  --use "ethanholz/nvim-lastplace"
   use "tpope/vim-surround"
   use 'justinmk/vim-sneak'
   use "vim-scripts/BufOnly.vim"
@@ -83,7 +85,6 @@ return packer.startup(function(use)
   -- Colorschemes
   --use "lunarvim/darkplus.nvim"
   use 'folke/tokyonight.nvim'
-  use "projekt0n/github-nvim-theme"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -123,11 +124,15 @@ return packer.startup(function(use)
 
   -- Markdown Preview
   -- :call mkdp#util#install()
-  use 'iamcco/markdown-preview.nvim'
+  --use 'iamcco/markdown-preview.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
-end)
+end,
+config = {
+  -- Move to lua dir so impatient.nvim can cache it
+  compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua'
+}})
