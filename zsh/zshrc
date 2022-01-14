@@ -30,6 +30,7 @@ alias brewup="brew update; brew upgrade; brew cleanup; brew doctor"
 ## vim,tmux,zsh
 alias vim='nvim'
 alias v='nvim'
+alias vimc="nvim ~/.config/nvim/init.lua"
 alias tmx=tmuxinator
 alias zshconfig="nvim ~/.zshrc"
 alias zshreload="source ~/.zshrc"

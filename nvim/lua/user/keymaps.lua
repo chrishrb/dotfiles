@@ -45,6 +45,9 @@ keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 -- Remap jj to Esc
 keymap("i", "jj", "<Esc>", opts)
 
+-- go to Test
+keymap("n", "gT", ":A<CR>", opts)
+
 -- Visual --
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
