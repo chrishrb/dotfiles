@@ -69,7 +69,13 @@ check_for_cask() { # {{{
 
 check_for_software() { #{{{
 	echo "Checking to see if $1 is installed"
-	if ! [ -x "$(command -v $1)" ]; then
+  if [ -z "$2" ]; then
+    COMMAND=$1
+  else
+    COMMAND=$2
+  fi
+
+	if ! [ -x "$(command -v $COMMAND)" ]; then
 		prompt_install $1
 	else
 		echo "$1 is installed."
@@ -123,15 +129,13 @@ setup_zsh() { #{{{
 		if ! [ -x "$(command -v fzf)" ]; then
 				/usr/local/opt/fzf/install
 		fi
-		check_for_softkare xclip
 		setup_symlink zsh/zshrc .zshrc
+		setup_symlink zsh/zsh.d/ .config/zsh.d/
 		check_default_shell
 
     # cht.sh
-    mkdir -p ~/.zsh.d/
     curl https://cht.sh/:cht.sh > /usr/local/bin/cht.sh
     chmod +x /usr/local/bin/cht.sh
-    curl https://cheat.sh/:zsh > ~/.zsh.d/_cht
 } #}}}
 
 setup_tmux() { #{{{
@@ -172,12 +176,12 @@ setup_software() { #{{{
 		check_for_sdkman
     check_for_software htop
     check_for_software wget
-    check_for_software glances
     check_for_software python@3.10
     check_for_software rustup
     check_for_software go
     check_for_software jq
     check_for_software node
+    check_for_software tree
 
     # provide public url for locally running server
     check_for_software ngrok
@@ -195,6 +199,7 @@ setup_dotfiles() { #{{{
 } #}}}
 
 setup_kitty() { #{{{
+    check_for_cask kitty
 		setup_symlink kitty .config/kitty
 } #}}}
 
@@ -208,16 +213,15 @@ setup_mac() { #{{{
       echo "brew is installed"
     fi
 
-    check_for_cask google-chrome
     check_for_cask notion
     check_for_cask scroll-reverser
     check_for_cask tiles
     check_for_cask discord
-    check_for_cask kitty
     check_for_cask font-fira-code
     check_for_cask bitwarden
     check_for_cask docker
     check_for_software speedtest-cli
+    check_for_cask vivaldi
 
     # screenshots path
     echo "change screenshot path to $SCREENSHOT_PATH"
@@ -235,6 +239,11 @@ setup_mac() { #{{{
     echo "Install https://github.com/MickL/macos-keyboard-layout-german-programming"
 } # }}}
 
+setup_s-search() { # {{{
+    check_for_software s-search s
+		setup_symlink s/ .config/s/
+} # }}}
+
 git submodule update --init --recursive
 
 if [ "$1" = 'dotfiles' ]; then
@@ -243,6 +252,9 @@ if [ "$1" = 'dotfiles' ]; then
 elif [ "$1" = 'mac' ]; then
     setup_mac
     echo "mac ready"
+elif [ "$1" = 's-search' ]; then
+    setup_s-search
+    echo "s-search is ready. start e.g. 's puppies'"
 elif [ "$1" = 'kitty' ]; then
     setup_kitty
     echo "kitty ready"
