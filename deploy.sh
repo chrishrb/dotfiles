@@ -182,6 +182,7 @@ setup_software() { #{{{
     check_for_software jq
     check_for_software node
     check_for_software tree
+    check_for_software youtube-dl
 
     # provide public url for locally running server
     check_for_software ngrok

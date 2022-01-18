@@ -15,16 +15,13 @@ if fn.empty(fn.glob(install_path)) > 0 then
   vim.cmd [[packadd packer.nvim]]
 end
 
--- With autosave that doesnt make sense..
--- manually run command :PackerSync
-
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
--- vim.cmd [[
---   augroup packer_user_config
---     autocmd!
---     autocmd BufWritePost plugins.lua source <afile> | PackerSync
---   augroup end
--- ]]
+vim.cmd [[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
+]]
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
@@ -83,8 +80,10 @@ return packer.startup({function(use)
   }
 
   -- Colorschemes
-  --use "lunarvim/darkplus.nvim"
   use 'folke/tokyonight.nvim'
+
+  -- jupyter nb
+  use 'jupyter-vim/jupyter-vim'
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -120,13 +119,6 @@ return packer.startup({function(use)
   -- Git
   use "lewis6991/gitsigns.nvim"
   use 'tpope/vim-fugitive'
-
-  -- Autosave
-  use "Pocco81/AutoSave.nvim"
-
-  -- Markdown Preview
-  -- :call mkdp#util#install()
-  --use 'iamcco/markdown-preview.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

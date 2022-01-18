@@ -43,6 +43,23 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
+-- deactivate these standard plugins
+vim.g.loaded_matchparen = 1
+vim.g.loaded_matchit = 1
+vim.g.loaded_logiPat = 1
+vim.g.loaded_rrhelper = 1
+vim.g.loaded_tarPlugin = 1
+vim.g.loaded_man = 1
+vim.g.loaded_gzi = 1
+vim.g.loaded_zipPlugi = 1
+vim.g.loaded_2html_plugi = 1
+vim.g.loaded_shada_plugi = 1
+vim.g.loaded_spellfile_plugi = 1
+vim.g.loaded_netr = 1
+vim.g.loaded_netrwPlugi = 1
+vim.g.loaded_tutor_mode_plugi = 1
+vim.g.loaded_remote_plugin = 1
+
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 
