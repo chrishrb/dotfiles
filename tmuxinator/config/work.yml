@@ -53,4 +53,5 @@ windows:
       panes:
         - vim
         - work
+  - 羽Time: # empty
   -  Shell: # empty

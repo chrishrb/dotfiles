@@ -1,7 +1,6 @@
 #!/bin/bash
 
 DOTFILES_DIR=$(git rev-parse --show-toplevel)
-SCREENSHOT_PATH=~/screenshots
 
 # {{{util func
 prompt_install() { #{{{
@@ -101,11 +100,13 @@ check_default_shell() { #{{{
 
 # $1 FROM, $2 TO
 setup_symlink() {
+    # create dir structure
     if [[ "$2" == *"/"* ]]; then
-        DIR=$(echo "$2" | grep -o ".*\/")
+        DIR=$(dirname $HOME/$2)
         mkdir -p "$HOME/$DIR"
     fi
-    ln -sf "$DOTFILES_DIR/$1" "$HOME/$2"
+
+    ln -nsf "$DOTFILES_DIR/$1" "$HOME/$2"
 }
 
 # $1 FROM, $2 TO
@@ -130,12 +131,14 @@ setup_zsh() { #{{{
 				/usr/local/opt/fzf/install
 		fi
 		setup_symlink zsh/zshrc .zshrc
-		setup_symlink zsh/zsh.d/ .config/zsh.d/
+		setup_symlink zsh/zsh.d/ .config/zsh.d
 		check_default_shell
 
     # cht.sh
-    curl https://cht.sh/:cht.sh > /usr/local/bin/cht.sh
-    chmod +x /usr/local/bin/cht.sh
+    if ! [ -f "/usr/local/bin/cht.sh" ]; then
+      curl https://cht.sh/:cht.sh > /usr/local/bin/cht.sh
+      chmod +x /usr/local/bin/cht.sh
+    fi
 } #}}}
 
 setup_tmux() { #{{{
@@ -224,17 +227,8 @@ setup_mac() { #{{{
     check_for_software speedtest-cli
     check_for_cask vivaldi
 
-    # screenshots path
-    echo "change screenshot path to $SCREENSHOT_PATH"
-    mkdir -p $SCREENSHOT_PATH
-    defaults write com.apple.screencapture location $SCREENSHOT_PATH && killall SystemUIServer
-
-    # show hidden files
-    defaults write com.apple.finder AppleShowAllFiles YES
-    # show path bar
-    defaults write com.apple.finder ShowPathbar -bool true
-    # show status bar
-    defaults write com.apple.finder ShowStatusBar -bool true
+    # macos specific setup
+    source $DOTFILES_DIR/mac/macos.sh
 
     # setup keyboard
     echo "Install https://github.com/MickL/macos-keyboard-layout-german-programming"
@@ -242,7 +236,7 @@ setup_mac() { #{{{
 
 setup_s-search() { # {{{
     check_for_software s-search s
-		setup_symlink s/ .config/s/
+		setup_symlink s .config/s
 } # }}}
 
 git submodule update --init --recursive
