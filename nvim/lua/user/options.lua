@@ -43,22 +43,32 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
--- deactivate these standard plugins
-vim.g.loaded_matchparen = 1
-vim.g.loaded_matchit = 1
-vim.g.loaded_logiPat = 1
-vim.g.loaded_rrhelper = 1
-vim.g.loaded_tarPlugin = 1
-vim.g.loaded_man = 1
-vim.g.loaded_gzi = 1
-vim.g.loaded_zipPlugi = 1
-vim.g.loaded_2html_plugi = 1
-vim.g.loaded_shada_plugi = 1
-vim.g.loaded_spellfile_plugi = 1
-vim.g.loaded_netr = 1
-vim.g.loaded_netrwPlugi = 1
-vim.g.loaded_tutor_mode_plugi = 1
-vim.g.loaded_remote_plugin = 1
+-- Do not source these default plugins
+vim.g.did_load_filetypes = 1
+local disabled_built_ins = {
+    "netrw",
+    "netrwPlugin",
+    "netrwSettings",
+    "netrwFileHandlers",
+    "gzip",
+    "zip",
+    "zipPlugin",
+    "tar",
+    "tarPlugin",
+    "getscript",
+    "getscriptPlugin",
+    "vimball",
+    "vimballPlugin",
+    "2html_plugin",
+    "logipat",
+    "rrhelper",
+    "spellfile_plugin",
+    "matchit"
+}
+for _, plugin in pairs(disabled_built_ins) do
+    vim.g["loaded_" .. plugin] = 1
+end
+-- end
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
