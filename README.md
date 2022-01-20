@@ -1,5 +1,5 @@
 # chrishrbs dotfiles
-[screenshot](.github/screenshot.png)
+![screenshot](.github/screenshot.png)
 
 Awesome Dotfiles for Mac, ZSH, TMUX, VIM and more..
 It also includes some useful commandline tools.
