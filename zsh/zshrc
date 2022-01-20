@@ -35,6 +35,7 @@ alias vimc="nvim ~/.config/nvim/init.lua"
 alias tmx=tmuxinator
 alias zshconfig="nvim ~/.zshrc"
 alias zshreload="source ~/.zshrc"
+alias ssh="kitty +kitten ssh" # needed for ssh to work properly
 
 # }}}
 
@@ -92,6 +93,34 @@ vim-light () { # {{{
     nvim --cmd "let g:tokyonight_style = 'day'" ${1}
 }
 # }}}
+## {{{ youtube-dl
+dl-music() {
+  youtube-dl \
+    --ignore-errors \
+    --format bestaudio \
+    --extract-audio \
+    --audio-format mp3 \
+    --audio-quality 360K \
+    --restrict-filenames \
+    --embed-thumbnail \
+    --add-metadata \
+    --output "~/Music/youtube/%(title)s.%(ext)s" $1
+}
+
+dl-video() {
+  youtube-dl \
+    --ignore-errors \
+    --format bestaudio \
+    --extract-audio \
+    --audio-format mp3 \
+    --audio-quality 360K \
+    --restrict-filenames \
+    --embed-thumbnail \
+    --add-metadata \
+    --output "~/Video/youtube/%(title)s.%(ext)s" $1
+}
+
+## }}}
 # }}}
 
 # {{{work specific

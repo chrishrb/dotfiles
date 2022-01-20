@@ -183,6 +183,7 @@ setup_software() { #{{{
     check_for_software node
     check_for_software tree
     check_for_software youtube-dl
+    check_for_software ffmpeg
     check_for_software s-search s
 
     # provide public url for locally running server
@@ -193,6 +194,10 @@ setup_software() { #{{{
 
     # s-search config
 		setup_symlink s .config/s
+
+    # for youtube dl
+    mkdir -p ~/Music/youtube/
+    mkdir -p ~/Video/youtube/
 } #}}}
 
 setup_dotfiles() { #{{{
