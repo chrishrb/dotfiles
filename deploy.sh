@@ -234,6 +234,14 @@ setup_mac() { #{{{
     echo "Install https://github.com/MickL/macos-keyboard-layout-german-programming"
 } # }}}
 
+setup_flutter() { #{{{
+  check_for_cask flutter
+  echo "Error - some steps are still missing here"
+
+
+} #}}}
+
+
 setup_s-search() { # {{{
     check_for_software s-search s
 		setup_symlink s .config/s

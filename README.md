@@ -1,10 +1,15 @@
-# Dotfiles
+# chrishrbs dotfiles
+[screenshot](.github/screenshot.png)
 
-Awesome Dotfiles for ZSH, TMUX and VIM
+Awesome Dotfiles for Mac, ZSH, TMUX, VIM and more..
+It also includes some useful commandline tools.
 
 ## Installation
-Once the repo ist cloned, execute the deploy script:
+Install only the parts you need with just the command `./deploy.sh PART`
+Valid parts can be shown with `./deploy.sh help`.
 
 ```shell
-cd dotfiles && chmod +x deploy.sh && ./deploy.sh
+git clone git@github.com:chrishrb/dotfiles.git
+cd dotfiles
+./deploy.sh PART
 ```
