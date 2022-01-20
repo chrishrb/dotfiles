@@ -143,6 +143,7 @@ setup_zsh() { #{{{
 
 setup_tmux() { #{{{
 		check_for_software tmux
+    check_for_software tmuxinator
     check_for_software gawk coreutils
     # system specific
 		if [ -x "$(command -v brew)" ]; then
@@ -151,12 +152,8 @@ setup_tmux() { #{{{
       check_for_software net-tools
     fi
     setup_symlink tmux/tmux.conf .tmux.conf
+    setup_symlink tmuxinator/config .config/tmuxinator
 } #}}}
-
-setup_tmuxinator() { #{{{
-  check_for_software tmuxinator
-  setup_symlink tmuxinator/config .config/tmuxinator
-} # }}}
 
 setup_latex() { #{{{
     check_for_cask basictex
@@ -186,12 +183,16 @@ setup_software() { #{{{
     check_for_software node
     check_for_software tree
     check_for_software youtube-dl
+    check_for_software s-search s
 
     # provide public url for locally running server
-    check_for_software ngrok
+    # check_for_software ngrok
 
     # add gitignore
     npx add-gitignore
+
+    # s-search config
+		setup_symlink s .config/s
 } #}}}
 
 setup_dotfiles() { #{{{
@@ -241,12 +242,6 @@ setup_flutter() { #{{{
 
 } #}}}
 
-
-setup_s-search() { # {{{
-    check_for_software s-search s
-		setup_symlink s .config/s
-} # }}}
-
 git submodule update --init --recursive
 
 if [ "$1" = 'dotfiles' ]; then
@@ -255,9 +250,6 @@ if [ "$1" = 'dotfiles' ]; then
 elif [ "$1" = 'mac' ]; then
     setup_mac
     echo "mac ready"
-elif [ "$1" = 's-search' ]; then
-    setup_s-search
-    echo "s-search is ready. start e.g. 's puppies'"
 elif [ "$1" = 'kitty' ]; then
     setup_kitty
     echo "kitty ready"
@@ -267,9 +259,6 @@ elif [ "$1" = 'zsh' ]; then
 elif [ "$1" = 'tmux' ]; then
     setup_tmux
     echo "tmux ready"
-elif [ "$1" = 'tmuxinator' ]; then
-    setup_tmuxinator
-    echo "tmuxinator ready"
 elif [ "$1" = 'nvim' ]; then
     setup_nvim
     echo "nvim ready"
@@ -280,5 +269,13 @@ elif [ "$1" = 'software' ]; then
     setup_software
     echo "all software ready"
 else
-		echo "Command not found"
+		echo "Command not found! Valid commands are: "
+    echo "  dotfiles"
+    echo "  mac"
+    echo "  kitty"
+    echo "  zsh"
+    echo "  nvim"
+    echo "  tmux"
+    echo "  latex"
+    echo "  software"
 fi
