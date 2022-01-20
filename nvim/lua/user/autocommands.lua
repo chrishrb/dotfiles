@@ -28,6 +28,12 @@ vim.cmd [[
     autocmd!
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
   augroup end
+
+  " when leave then set | cursor in terminal
+  augroup _exit
+    autocmd!
+    autocmd VimLeave * set guicursor=n:ver25-iCursor
+  augroup end
 ]]
 
 -- Autoformat
