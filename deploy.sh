@@ -174,6 +174,7 @@ setup_latex() { #{{{
 
 setup_software() { #{{{
 		check_for_sdkman
+    check_for_software ruby@3.0
     check_for_software htop
     check_for_software wget
     check_for_software python@3.10
@@ -185,6 +186,10 @@ setup_software() { #{{{
     check_for_software youtube-dl
     check_for_software ffmpeg
     check_for_software s-search s
+
+    if ! [ -x "$(command -v timetrap)" ]; then
+      gem install timetrap
+    fi
 
     # provide public url for locally running server
     # check_for_software ngrok
