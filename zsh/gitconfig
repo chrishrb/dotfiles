@@ -31,3 +31,14 @@
     graph = log --graph --decorate --pretty=oneline --abbrev-commit
     unstage = reset HEAD --
     last = log -1 HEAD
+    me = config user.name
+
+    # all commits today for only me
+    today = !git all --since='12am' --committer=\"`git me`\"
+
+    # today's commits without formatting or paging
+    today-text = !git --no-pager today --no-color
+
+    # dad instead of add
+    dad = !curl https://icanhazdadjoke.com/ && echo
+

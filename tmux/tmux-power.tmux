@@ -99,6 +99,7 @@ tmux_set @prefix_highlight_copy_mode_attr "fg=$TC,bg=$BG,bold"
 tmux_set @prefix_highlight_output_prefix "#[fg=$TC]#[bg=$BG]$left_arrow_icon#[bg=$TC]#[fg=$BG]"
 tmux_set @prefix_highlight_output_suffix "#[fg=$TC]#[bg=$BG]$right_arrow_icon"
 
+
 #     
 # Left side of status bar
 tmux_set status-left-bg "$G04"
@@ -116,11 +117,17 @@ if [[ $prefix_highlight_pos == 'L' || $prefix_highlight_pos == 'LR' ]]; then
 fi
 tmux_set status-left "$LS"
 
+# tmux mode indicator
+tmux_set @mode_indicator_empty_mode_style "bg=$TC,fg=$G07"
+tmux_set @mode_indicator_prefix_mode_style "bg=$G07,fg=$TC"
+tmux_set @mode_indicator_copy_mode_style "bg=yellow,fg=$G04"
+tmux_set @mode_indicator_sync_mode_style "bg=red,fg=$G04"
+
 # Right side of status bar
 tmux_set status-right-bg "$G04"
 tmux_set status-right-fg "G12"
 tmux_set status-right-length 150
-RS="#[fg=$TC,bg=$G06]  $time_icon $time_format #[fg=$TC,bg=$G06]$left_arrow_icon#[fg=$G04,bg=$TC] $date_icon $date_format "
+RS="#[fg=$TC,bg=$G06]  $time_icon $time_format #[fg=$TC,bg=$G06]$left_arrow_icon#[fg=$G04,bg=$TC] $date_icon $date_format #[bg=$G04]|#{tmux_mode_indicator}"
 if "$show_ram_cpu_percentage"; then
     RS="#[bg=$G06]#{ram_fg_color}  #{ram_percentage} $RS"
     RS="  #[bg=$G06]#{cpu_fg_color} 龍#{cpu_percentage} $RS"

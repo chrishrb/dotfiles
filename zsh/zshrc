@@ -9,6 +9,8 @@ export TERM="xterm-kitty"
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# set block cursor
+echo -ne '\e[1 q'
 # }}}
 
 # {{{aliases
@@ -37,33 +39,6 @@ alias zshconfig="nvim ~/.zshrc"
 alias zshreload="source ~/.zshrc"
 alias ssh="kitty +kitten ssh" # needed for ssh to work properly
 
-# }}}
-
-# {{{ set right cursor 
-function _set_cursor() {
-    if [[ $TMUX = '' ]]; then
-      echo -ne $1
-    else
-      echo -ne "\ePtmux;\e\e$1\e\\"
-    fi
-}
-
-# Remove mode switching delay.
-KEYTIMEOUT=5
-
-function _set_block_cursor() { _set_cursor '\e[2 q' }
-function _set_beam_cursor() { _set_cursor '\e[0 q' }
-
-function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
-      _set_block_cursor
-  else
-      _set_beam_cursor
-  fi
-}
-zle -N zle-keymap-select
-# ensure beam cursor when starting new terminal
-precmd_functions+=(_set_beam_cursor) #
 # }}}
 
 # {{{oh-my-zsh
