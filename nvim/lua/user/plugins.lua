@@ -82,19 +82,9 @@ return packer.startup({function(use)
 
   -- Colorschemes
   use 'folke/tokyonight.nvim'
-
+--
   -- jupyter nb
-  use {
-    'jupyter-vim/jupyter-vim',
-    as = "jupyter-vim",
-    cmd = {
-      "JupyterConnect"
-    },
-    setup = function()
-      require "plugins.jupyter-vim"
-    end
-  }
-
+  use 'jupyter-vim/jupyter-vim'
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin

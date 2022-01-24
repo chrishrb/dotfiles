@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOTFILES_DIR=$(git rev-parse --show-toplevel)
+DOTFILES_DIR="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 # {{{util func
 prompt_install() { #{{{
@@ -211,6 +211,7 @@ setup_dotfiles() { #{{{
 
 		echo "Set Git Config and Aliases"
 		git config --global include.path "$DOTFILES_DIR/zsh/gitconfig"
+		git config --global core.excludesfile "$DOTFILES_DIR/zsh/gitignore"
 } #}}}
 
 setup_kitty() { #{{{
