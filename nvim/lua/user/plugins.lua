@@ -50,21 +50,21 @@ return packer.startup({function(use)
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "numToStr/Comment.nvim" -- Easily comment stuff
   use "kyazdani42/nvim-web-devicons"
-  use "kyazdani42/nvim-tree.lua"
-  use "akinsho/bufferline.nvim"
-  use "moll/vim-bbye"
-  use "nvim-lualine/lualine.nvim"
-  use "akinsho/toggleterm.nvim"
-  use "ahmedkhalf/project.nvim"
-  use "lewis6991/impatient.nvim"
-  use "lukas-reineke/indent-blankline.nvim"
-  use "goolord/alpha-nvim"
+  use "kyazdani42/nvim-tree.lua" -- neovim tree
+  use "akinsho/bufferline.nvim" -- bufferline with different "tabs"
+  use "moll/vim-bbye" -- delete buffers without closing your window or messing up your layout
+  use "nvim-lualine/lualine.nvim" -- line below for showing INSERT, branch, line number and problems
+  use "akinsho/toggleterm.nvim" -- builtin terminal for vim
+  use "ahmedkhalf/project.nvim" -- project management with  vim
+  use "lewis6991/impatient.nvim" -- makes vim faster
+  use "lukas-reineke/indent-blankline.nvim" -- indent line
+  use "goolord/alpha-nvim" -- nice start screen
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
-  use "folke/which-key.nvim"
-  use "tpope/vim-surround"
-  use 'justinmk/vim-sneak'
-  use "vim-scripts/BufOnly.vim"
-  use { 'alexghergh/nvim-tmux-navigation', config = function()
+  use "folke/which-key.nvim" -- whichkey help
+  use "tpope/vim-surround" -- delete/change surround
+  use 'justinmk/vim-sneak' -- s / S navigation
+  use "vim-scripts/BufOnly.vim" -- delete all bufs except the one you are working
+  use { 'alexghergh/nvim-tmux-navigation', config = function() -- tmux navigation
         require'nvim-tmux-navigation'.setup {
             disable_when_zoomed = false, -- defaults to false
             keybindings = {
@@ -78,13 +78,14 @@ return packer.startup({function(use)
         }
     end
   }
-  use {'nathom/filetype.nvim'}
+  use 'nathom/filetype.nvim' -- faster then builtin filetype
+  use 'stsewd/gx-extended.vim' -- use gx to go to link
 
   -- Colorschemes
-  use 'folke/tokyonight.nvim'
+  use 'folke/tokyonight.nvim' -- nice and simple theme
 --
   -- jupyter nb
-  use 'jupyter-vim/jupyter-vim'
+  use 'jupyter-vim/jupyter-vim' -- jupyter console with vim (is very slow :()
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -103,23 +104,23 @@ return packer.startup({function(use)
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   -- use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
-  use 'mfussenegger/nvim-jdtls'
+  use 'mfussenegger/nvim-jdtls' -- nvim java language server
   use 'tami5/lspsaga.nvim'
-  use 'tpope/vim-projectionist'
+  use 'tpope/vim-projectionist' -- go to test / gT
 
   -- Telescope
-  use "nvim-telescope/telescope.nvim"
+  use "nvim-telescope/telescope.nvim" -- fuzzy finder for vim
 
   -- Treesitter
   use {
-    "nvim-treesitter/nvim-treesitter",
+    "nvim-treesitter/nvim-treesitter", -- extended syntax highlighting
     run = ":TSUpdate",
   }
-  use "JoosepAlviste/nvim-ts-context-commentstring"
+  use "JoosepAlviste/nvim-ts-context-commentstring" -- comment with gcc and gc in every language
 
   -- Git
-  use "lewis6991/gitsigns.nvim"
-  use 'tpope/vim-fugitive'
+  use "lewis6991/gitsigns.nvim" -- show changed lines in vim
+  use 'tpope/vim-fugitive' -- git
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
