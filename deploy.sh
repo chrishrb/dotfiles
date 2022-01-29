@@ -187,6 +187,7 @@ setup_software() { #{{{
   check_for_software youtube-dl
   check_for_software ffmpeg
   check_for_software s-search s
+  check_for_software watchman
 
   if ! [ -x "$(command -v timetrap)" ]; then
     gem install timetrap

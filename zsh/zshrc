@@ -40,6 +40,7 @@ alias tmx=tmuxinator
 alias zshconfig="nvim ~/.zshrc"
 alias zshreload="source ~/.zshrc"
 alias ssh="kitty +kitten ssh" # needed for ssh to work properly
+eval $(thefuck --alias)
 
 # }}}
 
@@ -140,3 +141,4 @@ export SDKMAN_DIR="/Users/cherb/.sdkman"
 [[ -s "/Users/cherb/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/cherb/.sdkman/bin/sdkman-init.sh"
 ## }}}
 # }}}
+
