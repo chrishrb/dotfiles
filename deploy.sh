@@ -234,7 +234,7 @@ setup_mac() { #{{{
 
   check_for_cask notion
   check_for_cask scroll-reverser
-  check_for_cask tiles
+  # check_for_cask tiles
   check_for_cask discord
   check_for_cask font-fira-code
   check_for_cask bitwarden
@@ -246,7 +246,27 @@ setup_mac() { #{{{
   source $DOTFILES_DIR/mac/macos.sh
 
   # setup keyboard
+  echo "Setup Keyboard"
   echo "Install https://github.com/MickL/macos-keyboard-layout-german-programming"
+} #}}}
+
+setup_yabai() { #{{{
+  # yabai - tiling window manager
+  echo "Install yabai"
+  echo -n "Disable System Integrity Protection first!! Done (y/n)? "
+  read answer
+  if [ "$answer" != "${answer#[Yy]}" ] ;then
+    check_for_software yabai
+    check_for_software skhd
+    setup_symlink mac/yabai .config/yabai
+    setup_symlink mac/skhd .config/skhd
+
+    echo "Install and test yabai"
+    echo "https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)"
+  else
+    echo "https://github.com/koekeishiya/yabai/wiki/Disabling-System-Integrity-Protection"
+    exit 1
+  fi
 } # }}}
 
 setup_flutter() { #{{{
@@ -271,6 +291,9 @@ elif [ "$1" = 'zsh' ]; then
 elif [ "$1" = 'tmux' ]; then
   setup_tmux
   echo "tmux ready"
+elif [ "$1" = 'yabai' ]; then
+  setup_yabai
+  echo "yabai ready"
 elif [ "$1" = 'nvim' ]; then
   setup_nvim
   echo "nvim ready"
@@ -288,6 +311,7 @@ else
   echo "  zsh"
   echo "  nvim"
   echo "  tmux"
+  echo "  yabai"
   echo "  latex"
   echo "  software"
 fi
