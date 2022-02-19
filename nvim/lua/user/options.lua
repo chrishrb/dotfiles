@@ -73,5 +73,9 @@ end
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 
+-- terraform
+vim.g.terraform_fmt_on_save=1
+vim.g.terraform_align=1
+
 -- save last position
 vim.api.nvim_exec([[autocmd! BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif]], false)

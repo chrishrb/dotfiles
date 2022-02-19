@@ -53,7 +53,13 @@ eval $(thefuck --alias)
 ZSH_THEME="robbyrussell"
 ZSH_CUSTOM=$HOME/dotfiles/zsh/custom
 
+function zvm_config() {
+  ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+  ZVM_VI_INSERT_ESCAPE_BINDKEY=jj
+}
+
 plugins=(
+  zsh-vi-mode
   git
   dnf
   zsh-syntax-highlighting
@@ -61,11 +67,17 @@ plugins=(
   tmuxinator
   last-working-dir
   git-open
+  aws
+  kubectl
+  terraform
 )
 
 source $ZSH/oh-my-zsh.sh
 
 fpath=(~/.config/zsh.d/ $fpath)
+
+# vim-mode
+zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
 # }}}
 
 # {{{functions

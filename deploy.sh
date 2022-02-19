@@ -186,6 +186,7 @@ setup_software() { #{{{
   check_for_software tree
   check_for_software youtube-dl
   check_for_software ffmpeg
+  check_for_software neofetch
   check_for_software s-search s
   check_for_software watchman
   check_for_software ghostscript gs

@@ -83,9 +83,9 @@ return packer.startup({function(use)
 
   -- Colorschemes
   use 'folke/tokyonight.nvim' -- nice and simple theme
---
+
   -- jupyter nb
-  use 'jupyter-vim/jupyter-vim' -- jupyter console with vim (is very slow :()
+  -- use 'jupyter-vim/jupyter-vim' -- jupyter console with vim (is very slow :()
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -121,6 +121,9 @@ return packer.startup({function(use)
   -- Git
   use "lewis6991/gitsigns.nvim" -- show changed lines in vim
   use 'tpope/vim-fugitive' -- git
+
+  -- other
+  use 'hashivim/vim-terraform' --terraform
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
