@@ -10,9 +10,6 @@ export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
-
-# set block cursor
-echo -ne '\e[1 q'
 # }}}
 
 # {{{aliases
@@ -40,8 +37,6 @@ alias tmx=tmuxinator
 alias zshconfig="nvim ~/.zshrc"
 alias zshreload="source ~/.zshrc"
 alias ssh="kitty +kitten ssh" # needed for ssh to work properly
-eval $(thefuck --alias)
-
 # }}}
 
 # {{{oh-my-zsh
@@ -69,7 +64,7 @@ plugins=(
   last-working-dir
   git-open
   aws
-  kubectl
+  # kubectl
   terraform
   terragrunt
 )
@@ -82,11 +77,11 @@ fpath=(~/.config/zsh.d/ $fpath)
 zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
 # }}}
 
-# {{{functions
-vim-light () { # {{{
-    nvim --cmd "let g:tokyonight_style = 'day'" ${1}
-}
-# }}}
+# # {{{functions
+# vim-light () { # {{{
+#     nvim --cmd "let g:tokyonight_style = 'day'" ${1}
+# }
+# # }}}
 ## {{{ youtube-dl
 dl-music() {
   youtube-dl \
@@ -115,7 +110,68 @@ dl-video() {
 }
 
 ## }}}
+## {{{ extract method
+SAVEIFS=$IFS
+IFS=$(echo -en "\n\b")
+
+function extract {
+ if [ -z "$1" ]; then
+    # display usage if no parameters given
+    echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+    echo "       extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"
+ else
+    for n in "$@"
+    do
+      if [ -f "$n" ] ; then
+          case "${n%,}" in
+            *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
+                         tar xvf "$n"       ;;
+            *.lzma)      unlzma ./"$n"      ;;
+            *.bz2)       bunzip2 ./"$n"     ;;
+            *.cbr|*.rar)       unrar x -ad ./"$n" ;;
+            *.gz)        gunzip ./"$n"      ;;
+            *.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
+            *.z)         uncompress ./"$n"  ;;
+            *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
+                         7z x ./"$n"        ;;
+            *.xz)        unxz ./"$n"        ;;
+            *.exe)       cabextract ./"$n"  ;;
+            *.cpio)      cpio -id < ./"$n"  ;;
+            *.cba|*.ace)      unace x ./"$n"      ;;
+            *)
+                         echo "extract: '$n' - unknown archive method"
+                         return 1
+                         ;;
+          esac
+      else
+          echo "'$n' - file does not exist"
+          return 1
+      fi
+    done
+fi
+}
+
+IFS=$SAVEIFS
+## }}}
+## {{{ fuck
+  fuck () {
+      TF_PYTHONIOENCODING=$PYTHONIOENCODING;
+      export TF_SHELL=zsh;
+      export TF_ALIAS=fuck;
+      TF_SHELL_ALIASES=$(alias);
+      export TF_SHELL_ALIASES;
+      TF_HISTORY="$(fc -ln -10)";
+      export TF_HISTORY;
+      export PYTHONIOENCODING=utf-8;
+      TF_CMD=$(
+          thefuck THEFUCK_ARGUMENT_PLACEHOLDER $@
+      ) && eval $TF_CMD;
+      unset TF_HISTORY;
+      export PYTHONIOENCODING=$TF_PYTHONIOENCODING;
+      test -n "$TF_CMD" && print -s $TF_CMD
+  }
 # }}}
+# # }}}
 
 # {{{plugins
 ## {{{fuzzyfinder
@@ -151,4 +207,3 @@ export SDKMAN_DIR="/Users/cherb/.sdkman"
 [[ -s "/Users/cherb/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/cherb/.sdkman/bin/sdkman-init.sh"
 ## }}}
 # }}}
-
