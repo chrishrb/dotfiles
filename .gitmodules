@@ -13,3 +13,6 @@
 [submodule "zsh/custom/plugins/zsh-vi-mode"]
 	path = zsh/custom/plugins/zsh-vi-mode
 	url = https://github.com/jeffreytse/zsh-vi-mode
+[submodule "zsh/custom/plugins/terragrunt"]
+	path = zsh/custom/plugins/terragrunt
+	url = https://github.com/hanjunlee/terragrunt-oh-my-zsh-plugin

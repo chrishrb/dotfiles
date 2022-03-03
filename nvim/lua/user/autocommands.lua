@@ -37,6 +37,11 @@ vim.cmd [[
     autocmd BufRead,BufNewFile *.tf,*.tfvars set filetype=terraform
     autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=json
   augroup end
+
+  augroup _leave
+    autocmd!
+    autocmd VimLeave * set guicursor=a:ver100-blinkon0
+  augroup end
 ]]
 
 -- Autoformat

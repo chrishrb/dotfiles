@@ -190,6 +190,9 @@ setup_software() { #{{{
   check_for_software s-search s
   check_for_software watchman
   check_for_software ghostscript gs
+  check_for_software aws
+  check_for_software terraform
+  check_for_software terragrunt
 
   if ! [ -x "$(command -v timetrap)" ]; then
     gem install timetrap
@@ -207,6 +210,7 @@ setup_software() { #{{{
   # for youtube dl
   mkdir -p ~/Music/youtube/
   mkdir -p ~/Video/youtube/
+  echo "Install cw manually (https://github.com/lucagrulla/cw)"
 } #}}}
 
 setup_dotfiles() { #{{{

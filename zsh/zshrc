@@ -57,6 +57,7 @@ function zvm_config() {
   ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
   ZVM_VI_INSERT_ESCAPE_BINDKEY=jj
 }
+export VI_MODE_SET_CURSOR=true
 
 plugins=(
   zsh-vi-mode
@@ -70,6 +71,7 @@ plugins=(
   aws
   kubectl
   terraform
+  terragrunt
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -113,10 +115,6 @@ dl-video() {
 }
 
 ## }}}
-# }}}
-
-# {{{work specific
-export SENCHA_EXECUTABLE=/opt/Sencha/Cmd/sencha
 # }}}
 
 # {{{plugins
