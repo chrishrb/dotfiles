@@ -123,7 +123,9 @@ return packer.startup({function(use)
   use 'tpope/vim-fugitive' -- git
 
   -- other
-  use 'hashivim/vim-terraform' --terraform
+  use "hashivim/vim-terraform" --terraform
+  use {"jghauser/mkdir.nvim", config = function() require("mkdir") end} -- mkdir
+  use 'stsewd/isort.nvim' -- python sort imports
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

@@ -191,8 +191,10 @@ setup_software() { #{{{
   check_for_software watchman
   check_for_software ghostscript gs
   check_for_software aws
-  check_for_software terraform
-  check_for_software terragrunt
+  check_for_software tfenv
+  check_for_software tgenv
+  check_for_software imagemagick
+  check_for_software direnv
 
   if ! [ -x "$(command -v timetrap)" ]; then
     gem install timetrap
