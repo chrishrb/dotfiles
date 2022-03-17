@@ -103,10 +103,11 @@ return packer.startup({function(use)
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
-  -- use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
   use 'mfussenegger/nvim-jdtls' -- nvim java language server
   use 'tami5/lspsaga.nvim'
   use 'tpope/vim-projectionist' -- go to test / gT
+  use 'HallerPatrick/py_lsp.nvim' -- python venv
 
   -- Telescope
   use "nvim-telescope/telescope.nvim" -- fuzzy finder for vim

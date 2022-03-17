@@ -6,8 +6,12 @@ sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
 # My custom space names for my 3 monitor setup. These names are used in some of my scripts.
-yabai -m space 1 --label one
-yabai -m space 2 --label two
+yabai -m space 1 --label main
+yabai -m space 2 --label work
+yabai -m space 3 --label study
+yabai -m space 4 --label notes
+yabai -m space 5 --label new
+yabai -m space 6 --label six
 
 # float system preferences. Most of these just diable Yabai form resizing them.
 yabai -m rule --add app="^System Preferences$" sticky=on layer=above manage=off
@@ -59,6 +63,20 @@ yabai -m config bottom_padding 2
 yabai -m config left_padding 2
 yabai -m config right_padding 2
 yabai -m config window_gap 5
+
+# startup rules
+yabai -m rule --add app="^kitty$" space=main
+yabai -m rule --add app="^Vivaldi$" space=main
+
+yabai -m rule --add app="^Outlook$" space=work
+yabai -m rule --add app="^Teams$" space=work
+yabai -m rule --add app="^Slack$" space=work
+
+yabai -m rule --add app="^Discord$" space=study
+yabai -m rule --add app="^Mail$" space=study
+
+yabai -m rule --add app="^Notion$" space=notes
+yabai -m rule --add app="^Calendar$" space=notes
 
 # #Ubersicht widget bar stuff
 #yabai -m signal --add event=space_changed \

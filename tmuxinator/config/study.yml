@@ -1,10 +1,10 @@
 # /Users/cherb/.config/tmuxinator/main.yml
 
-name: work
-root: ~/jam-dev/work/cris/
+name: study
+root: ~/jam-dev/study/in4/
 
 # Optional tmux socket
-# socket_name: foo
+# socket_name: s
 
 # Note that the pre and post options have been deprecated and will be replaced by
 # project hooks.
@@ -45,20 +45,7 @@ root: ~/jam-dev/work/cris/
 # attach: false
 
 windows:
-  -  IDE:
-      layout: e8da,208x65,0,0[208x47,0,0,0,208x17,0,48,1]
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
-      panes:
-        - vim
-        - 
-  -  Terragrunt:
-    - cd cris-infrastructure
-  -  Terraform:
-    - cd cris-tfmod
-  -  Frontend:
-    - cd cris-frontend
-  -  Backend:
-    - cd cris-backend
-  - 羽Time: # empty
+  -  Webanwendungen:
+  -  IOT:
+  -  REC2:
+  -  Betriebssysteme:

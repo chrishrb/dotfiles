@@ -107,11 +107,7 @@ tmux_set status-left-fg "G12"
 tmux_set status-left-length 150
 user=$(whoami)
 LS="#[fg=$G04,bg=$TC,bold] $user_icon $user@#h #[fg=$TC,bg=$G06,nobold]$right_arrow_icon#[fg=$TC,bg=$G06] $session_icon #S "
-if "$show_upload_speed"; then
-    LS="$LS#[fg=$G06,bg=$G05]$right_arrow_icon#[fg=$TC,bg=$G05] $upload_speed_icon #{upload_speed} #[fg=$G05,bg=$BG]$right_arrow_icon"
-else
-    LS="$LS#[fg=$G06,bg=$BG]$right_arrow_icon"
-fi
+LS="$LS#[fg=$G06,bg=$BG]$right_arrow_icon"
 if [[ $prefix_highlight_pos == 'L' || $prefix_highlight_pos == 'LR' ]]; then
     LS="$LS#{prefix_highlight}"
 fi
@@ -127,17 +123,7 @@ tmux_set @mode_indicator_sync_mode_style "bg=red,fg=$G04"
 tmux_set status-right-bg "$G04"
 tmux_set status-right-fg "G12"
 tmux_set status-right-length 150
-RS="#[fg=$TC,bg=$G06]  $time_icon $time_format #[fg=$TC,bg=$G06]$left_arrow_icon#[fg=$G04,bg=$TC] $date_icon $date_format #[bg=$G04]|#{tmux_mode_indicator}"
-if "$show_ram_cpu_percentage"; then
-    RS="#[bg=$G06]#{ram_fg_color}  #{ram_percentage} $RS"
-    RS="  #[bg=$G06]#{cpu_fg_color} 龍#{cpu_percentage} $RS"
-fi
-if "$show_download_speed"; then
-    RS="#[fg=$TC,bg=$G06]#{network_bandwidth} $RS"
-fi
-if "$show_web_reachable"; then
-    RS=" #{web_reachable_status} $RS"
-fi
+RS="#[fg=$TC,bg=$G06]$time_icon $time_format #[fg=$TC,bg=$G06]$left_arrow_icon#[fg=$G04,bg=$TC] $date_icon $date_format #[bg=$G04]|#{tmux_mode_indicator}"
 if [[ $prefix_highlight_pos == 'R' || $prefix_highlight_pos == 'LR' ]]; then
     RS="#{prefix_highlight}$RS"
 fi

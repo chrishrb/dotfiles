@@ -26,7 +26,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 ## navigation aliases
 alias dev="cd ~/jam-dev/"
 alias home="cd ~/jam-dev/home/"
-alias study="cd ~/jam-dev/study/"
+alias study="cd ~/jam-dev/study/in4/"
 alias work="cd ~/jam-dev/work/cris/"
 
 ## other
