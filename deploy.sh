@@ -195,6 +195,8 @@ setup_software() { #{{{
   check_for_software tgenv
   check_for_software imagemagick
   check_for_software direnv
+  check_for_software poetry
+  check_for_software cookiecutter
 
   if ! [ -x "$(command -v timetrap)" ]; then
     gem install timetrap

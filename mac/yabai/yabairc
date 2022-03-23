@@ -65,43 +65,19 @@ yabai -m config right_padding 2
 yabai -m config window_gap 5
 
 # startup rules
-yabai -m rule --add app="^kitty$" space=main
-yabai -m rule --add app="^Vivaldi$" space=main
-
-yabai -m rule --add app="^Outlook$" space=work
-yabai -m rule --add app="^Teams$" space=work
-yabai -m rule --add app="^Slack$" space=work
-
-yabai -m rule --add app="^Discord$" space=study
-yabai -m rule --add app="^Mail$" space=study
-
-yabai -m rule --add app="^Notion$" space=notes
-yabai -m rule --add app="^Calendar$" space=notes
-
-# #Ubersicht widget bar stuff
-#yabai -m signal --add event=space_changed \
-#action="osascript -e 'tell application \"Übersicht\" to refresh widget id \"nibar-spaces-primary-jsx\"'"
-#yabai -m signal --add event=display_changed \
-#action="osascript -e 'tell application \"Übersicht\" to refresh widget id \"nibar-spaces-primary-jsx\"'"
-
-#yabai -m signal --add event=space_changed \
-#action="osascript -e 'tell application \"Übersicht\" to refresh widget id \"nibar-spaces-secondary-jsx\"'"
-#yabai -m signal --add event=display_changed \
-#action="osascript -e 'tell application \"Übersicht\" to refresh widget id \"nibar-spaces-secondary-jsx\"'"
-
-# signals
-# yabai -m signal --add event=window_destroyed action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
-#yabai -m signal --add event=space_changed action="yabai -m window --focus $(yabai -m query --windows --window | jq ".id")"
-# yabai -m signal --add event=application_terminated action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
-
-#testing signals
-# yabai -m signal --add event=window_destroyed action="terminal-notifier -message 'window_destroyed'"
-# yabai -m signal --add event=application_terminated action="terminal-notifier -message 'application_terminated'"
-
-## If I close the active window, focus on any other visible window.
-# yabai -m signal --add event=window_destroyed action="bash /Users/jesseskelton/CustomScripts/SwitchSpaces/window-focus-on-destroy.sh"
-# yabai -m signal --add event=space_changed action="export CUR_ACTIVE_APP=\"iTerm2\""
-
-echo "yabai configuration loaded.."
+# yabai -m rule --add app="^kitty$" space=main
+# yabai -m rule --add app="^Vivaldi$" space=main
+#
+# yabai -m rule --add app="^Outlook$" space=work
+# yabai -m rule --add app="^Teams$" space=work
+# yabai -m rule --add app="^Slack$" space=work
+#
+# yabai -m rule --add app="^Discord$" space=study
+# yabai -m rule --add app="^Mail$" space=study
+#
+# yabai -m rule --add app="^Notion$" space=notes
+# yabai -m rule --add app="^Calendar$" space=notes
+#
 
 #END
+echo "yabai configuration loaded.."

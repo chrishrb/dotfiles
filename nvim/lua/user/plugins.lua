@@ -54,7 +54,6 @@ return packer.startup({function(use)
   use "akinsho/bufferline.nvim" -- bufferline with different "tabs"
   use "moll/vim-bbye" -- delete buffers without closing your window or messing up your layout
   use "nvim-lualine/lualine.nvim" -- line below for showing INSERT, branch, line number and problems
-  use "akinsho/toggleterm.nvim" -- builtin terminal for vim
   use "ahmedkhalf/project.nvim" -- project management with  vim
   use "lewis6991/impatient.nvim" -- makes vim faster
   use "lukas-reineke/indent-blankline.nvim" -- indent line
@@ -126,7 +125,6 @@ return packer.startup({function(use)
   -- other
   use "hashivim/vim-terraform" --terraform
   use {"jghauser/mkdir.nvim", config = function() require("mkdir") end} -- mkdir
-  use 'stsewd/isort.nvim' -- python sort imports
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

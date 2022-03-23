@@ -5,28 +5,25 @@
 -- \__/_//_/_/ /_/___/_//_/_/ /_.__/   http://www.github.com/chrishrb/
 --
 
-
-require "user.impatient"
-require "user.options"
-require "user.keymaps"
-require "user.plugins"
-require "user.colorscheme"
-require "user.cmp"
-require "user.lsp"
-require "user.telescope"
-require "user.treesitter"
-require "user.autopairs"
-require "user.comment"
-require "user.gitsigns"
-require "user.nvim-tree"
-require "user.bufferline"
-require "user.lualine"
-require "user.toggleterm"
-require "user.project"
-require "user.indentline"
-require "user.alpha"
-require "user.whichkey"
-require "user.autocommands"
-require "user.snippet"
--- require "user.projectionist"
-require "user.devicons"
+require "user.impatient"      -- caching
+require "user.options"        -- general nvim options
+require "user.keymaps"        -- basic keymaps
+require "user.plugins"        -- plugins
+require "user.colorscheme"    -- define colorscheme
+require "user.cmp"            -- completion engine
+require "user.lsp"            -- language server protocol
+require "user.telescope"      -- fuzzy finder
+require "user.treesitter"     -- improved syntax highlighting
+require "user.autopairs"      -- extend with matching brackets
+require "user.comment"        -- commenting tool
+require "user.gitsigns"       -- gitsigns at the left
+require "user.nvim-tree"      -- file manager
+require "user.bufferline"     -- line on the top for viewing buffers
+require "user.lualine"        -- nice lualine on the bottom
+require "user.project"        -- IDE like project view
+require "user.indentline"     -- show indented lines
+require "user.alpha"          -- home screen for nvim
+require "user.whichkey"       -- show help for leaderkey actions
+require "user.autocommands"   -- all autocommands are stored here
+require "user.snippet"        -- extended snippets
+require "user.devicons"       -- extend icons here (e.g. for terraform)

@@ -43,7 +43,7 @@ alias grep="rg"
 alias vim='nvim'
 alias v='nvim'
 alias vimc="nvim ~/.config/nvim/init.lua"
-alias tmx=tmuxinator
+alias tm=tmuxinator
 alias zshconfig="nvim ~/.zshrc"
 alias zshreload="source ~/.zshrc"
 alias ssh="kitty +kitten ssh" # needed for ssh to work properly
@@ -89,9 +89,9 @@ zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
 # }}}
 
 # # {{{functions
-# vim-light () { # {{{
-#     nvim --cmd "let g:tokyonight_style = 'day'" ${1}
-# }
+vim-light () { # {{{
+    nvim --cmd "let g:tokyonight_style = 'day'" ${1}
+}
 # # }}}
 ## {{{ youtube-dl
 dl-music() {

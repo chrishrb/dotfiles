@@ -78,8 +78,9 @@
 # A REFERENCE ONLY, WHEN MAKING YOUR OWN CONFIGURATION..          #
 # ############################################################### #
 
-# open terminal, blazingly fast compared to iTerm/Hyper
+# open terminal
 cmd - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
+cmd + shift - return : /Applications/Vivaldi.app/Contents/MacOS/Vivaldi
 
 # Navigation
 lalt - h : yabai -m window --focus west
