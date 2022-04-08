@@ -19,6 +19,8 @@
     autoupdate = false
 [branch]
     autosetuprebase = always
+[init]
+	defaultBranch = main
 [alias]
     st = status
     ci = commit
@@ -41,4 +43,3 @@
 
     # dad instead of add
     dad = !curl https://icanhazdadjoke.com/ && echo
-

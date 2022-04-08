@@ -11,15 +11,19 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- functions
-function _G.ReloadConfig()--{{{
-  for name,_ in pairs(package.loaded) do
-    if name:match('^user') then
-      package.loaded[name] = nil
+vim.api.nvim_add_user_command(
+  'ReloadConfig',
+  function()
+    for name,_ in pairs(package.loaded) do
+      if name:match('^user') then
+        package.loaded[name] = nil
+      end
     end
-  end
 
-  dofile(vim.env.MYVIMRC)
-end--}}}
+    dofile(vim.env.MYVIMRC)
+  end,
+  { nargs = 0 }
+)
 
 --Deactivate default jupyter keybindings
 vim.g.jupyter_mapkeys = 0
@@ -44,10 +48,6 @@ keymap("n", "<leader>q", ":bp|bd#", opts)
 -- Code action
 keymap("n", "<leader>n", "<cmd>Lspsaga code_action<cr>", opts)
 keymap("v", "<leader>n", ":<c-u>Lspsaga range_code_action<cr>", opts)
-
--- Update/reload vimrc
-keymap("n", "<leader>r", "<cmd>lua ReloadConfig()<cr>", opts)
-keymap("n", "<leader>v", ":e $MYVIMRC<cr>", opts)
 
 -- Git resolve conflicts
 keymap("n", "gdh", "<cmd>diffget //2<cr>", opts)
@@ -87,11 +87,3 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 -- Execute commands
 keymap("x", "x", "yPgv:!zsh<CR>", opts)
-
--- Terminal --
--- Better terminal navigation
--- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
--- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
--- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
--- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
-

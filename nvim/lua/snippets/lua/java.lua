@@ -1,4 +1,7 @@
-local ls = require("luasnip")
+local snip_status_ok, ls = pcall(require, "luasnip")
+if not snip_status_ok then
+  return
+end
 
 -- some shorthands...
 local s = ls.snippet
@@ -53,4 +56,4 @@ local snippets = {
   })
 }
 
-return snippets
+ls.add_snippets("java", snippets)
