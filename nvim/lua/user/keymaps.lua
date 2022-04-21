@@ -43,8 +43,6 @@ keymap("n", "<C-Down>", ":resize -2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize +2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize -2<CR>", opts)
 
-keymap("n", "<leader>q", ":bp|bd#", opts)
-
 -- Code action
 keymap("n", "<leader>n", "<cmd>Lspsaga code_action<cr>", opts)
 keymap("v", "<leader>n", ":<c-u>Lspsaga range_code_action<cr>", opts)

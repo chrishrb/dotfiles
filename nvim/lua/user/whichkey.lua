@@ -50,7 +50,7 @@ local setup = {
     winblend = 0,
   },
   layout = {
-    height = { min = 4, max = 25 }, -- min and max height of the columns
+    height = { min = 2, max = 25 }, -- min and max height of the columns
     width = { min = 20, max = 50 }, -- min and max width of the columns
     spacing = 3, -- spacing between columns
     align = "left", -- align columns left, center or right
@@ -94,16 +94,6 @@ local mappings = {
   },
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
-
-  p = {
-    name = "Packer",
-    c = { "<cmd>PackerCompile<cr>", "Compile" },
-    i = { "<cmd>PackerInstall<cr>", "Install" },
-    s = { "<cmd>PackerSync<cr>", "Sync" },
-    S = { "<cmd>PackerStatus<cr>", "Status" },
-    u = { "<cmd>PackerUpdate<cr>", "Update" },
-  },
-
   g = {
     name = "Git",
     g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },

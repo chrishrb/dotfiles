@@ -43,9 +43,3 @@ vim.cmd [[
     autocmd VimLeave * set guicursor=a:ver100-blinkon0
   augroup end
 ]]
-
--- Autoformat
--- augroup _lsp
---   autocmd!
---   autocmd BufWritePre * lua vim.lsp.buf.formatting()
--- augroup end
