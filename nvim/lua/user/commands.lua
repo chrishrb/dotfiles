@@ -4,4 +4,4 @@ vim.cmd [[
 ]]
 
 -- open telescope buffer-selection
-vim.api.nvim_add_user_command("Buffers", "Telescope buffers", { nargs = 0 })
+vim.api.nvim_create_user_command("Buffers", "Telescope buffers", { nargs = 0 })

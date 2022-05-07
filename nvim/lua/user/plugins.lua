@@ -84,6 +84,7 @@ return packer.startup({function(use)
   use 'folke/tokyonight.nvim' -- nice and simple theme
 
   -- jupyter nb
+  use 'untitled-ai/jupyter_ascending.vim'
   -- use 'jupyter-vim/jupyter-vim' -- jupyter console with vim (is very slow :()
 
   -- cmp plugins

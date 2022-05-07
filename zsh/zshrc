@@ -182,6 +182,16 @@ IFS=$SAVEIFS
       test -n "$TF_CMD" && print -s $TF_CMD
   }
 # }}}
+  # Timetrap extension {{{
+  t () {
+    if [[ $1 == "lastweek" ]]; then
+      t week -s $(gdate -d "1 week ago last monday" +%F)
+    else
+      timetrap "$@"
+    fi
+  }
+  # }}}
+
 eval "$(direnv hook zsh)"
 # # }}}
 
