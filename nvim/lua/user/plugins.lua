@@ -83,10 +83,6 @@ return packer.startup({function(use)
   -- Colorschemes
   use 'folke/tokyonight.nvim' -- nice and simple theme
 
-  -- jupyter nb
-  use 'untitled-ai/jupyter_ascending.vim'
-  -- use 'jupyter-vim/jupyter-vim' -- jupyter console with vim (is very slow :()
-
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
   use "hrsh7th/cmp-buffer" -- buffer completions

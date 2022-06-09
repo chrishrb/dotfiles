@@ -1,7 +1,7 @@
 # /Users/cherb/.config/tmuxinator/main.yml
 
 name: jupyter
-root: ~/
+root: ~/jam-dev/study/in4/statistics/
 
 # Optional tmux socket
 # socket_name: foo
@@ -28,7 +28,7 @@ root: ~/
 
 # Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
 # activate jupyter env
-pre_window: source ~/dev/jupyter/venv/bin/activate && clear
+# pre_window: source ~/jam-dev/jupyter/.venv/bin/activate && clear
 
 # Pass command line options to tmux. Useful for specifying a different tmux.conf.
 # tmux_options: -f ~/.tmux.mac.conf
@@ -47,12 +47,7 @@ pre_window: source ~/dev/jupyter/venv/bin/activate && clear
 
 windows:
   - ﴬ Jupyter:
-      layout: 77a7,213x91,0,0{132x91,0,0,0,80x91,133,0,3}
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
+  - ﴬ Server: # empty
       panes:
-        - vim
-        - jupyter console
-  - 羽Time: # empty
+        - jupyter notebook
   -  Shell: # empty

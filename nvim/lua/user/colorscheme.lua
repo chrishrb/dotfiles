@@ -9,14 +9,6 @@ vim.cmd [[
     colorscheme default
     set background=dark
   endtry
-
-
-  augroup JupyterCellHighlighting
-    autocmd!
-    autocmd BufEnter *.py syn match IPythonCell /#%%.*\|# %%.*\|##.*/
-  augroup END
-
-  highlight default link IPythonCell Folded
 ]]
 
 vim.opt.fillchars = {

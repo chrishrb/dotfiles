@@ -1,6 +1,6 @@
 -- autoformat range or file with lsp
 vim.cmd [[
-  command! -range=% LspFormat <line1>,<line2>lua vim.lsp.buf.formatting_sync()
+  command! -range=% LspFormat <line1>,<line2>lua vim.lsp.buf.format(nil, 10000)
 ]]
 
 -- open telescope buffer-selection
