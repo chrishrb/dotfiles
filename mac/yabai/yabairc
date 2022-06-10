@@ -19,7 +19,7 @@ yabai -m rule --add app="^Finder$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Disk Utility$" sticky=on layer=above manage=off
 yabai -m rule --add app="^System Information$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Activity Monitor$" sticky=on layer=above manage=off
-yabai -m rule --add app="^Preview$" sticky=on layer=above manage=off
+# yabai -m rule --add app="^Preview$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Logi Options$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Bitwarden$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Vivaldi$" title="^Vivaldi Settings: .*" sticky=on layer=above manage=off
