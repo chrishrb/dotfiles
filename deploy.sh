@@ -120,13 +120,15 @@ setup_copy() {
 #}}}
 
 setup_nvim() { #{{{
-  check_for_software nvim ripgrep
+  check_for_software "neovim --HEAD"  
+  check_for_software ripgrep
   setup_symlink nvim .config/nvim
 } #}}}
 
 setup_zsh() { #{{{
   check_for_software zsh
   check_for_software fzf
+  check_for_software direnv
   check_for_software thefuck
   if ! [ -x "$(command -v fzf)" ]; then
       /usr/local/opt/fzf/install
@@ -191,15 +193,14 @@ setup_software() { #{{{
   check_for_software watchman
   check_for_software ghostscript gs
   check_for_software aws
-  check_for_software tfenv
-  check_for_software tgenv
+  # check_for_software tfenv
+  # check_for_software tgenv
   check_for_software imagemagick
-  check_for_software direnv
   check_for_software poetry
   check_for_software cookiecutter
 
   if ! [ -x "$(command -v timetrap)" ]; then
-    gem install timetrap
+    sudo gem install timetrap
   fi
 
   # provide public url for locally running server
@@ -245,7 +246,12 @@ setup_mac() { #{{{
   check_for_cask scroll-reverser
   # check_for_cask tiles
   check_for_cask discord
-  check_for_cask font-fira-code
+  check_for_software coreutils
+  check_for_cask spotify
+  check_for_cask slack
+  check_for_cask zoom
+  # check_for_cask font-fira-code
+  echo "Install font manually"
   check_for_cask bitwarden
   check_for_cask docker
   check_for_software speedtest-cli
