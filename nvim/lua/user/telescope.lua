@@ -48,7 +48,12 @@ telescope.setup {
   },
   pickers = {
     buffers = {
-      theme = "ivy"
+      theme = "ivy",
+      mappings = {
+        i = {
+          ['<C-d>'] = actions.delete_buffer
+        }
+      }
     },
     find_files = {
       hidden = true

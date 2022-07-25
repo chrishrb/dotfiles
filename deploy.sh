@@ -156,6 +156,7 @@ setup_tmux() { #{{{
   fi
   setup_symlink tmux/tmux.conf .tmux.conf
   setup_symlink tmuxinator/config .config/tmuxinator
+  echo "Press prefix (CTRL+A) + I to install all plugins"
 } #}}}
 
 setup_latex() { #{{{
@@ -192,7 +193,7 @@ setup_software() { #{{{
   check_for_software s-search s
   check_for_software watchman
   check_for_software ghostscript gs
-  check_for_software aws
+  check_for_software aws awscli
   # check_for_software tfenv
   # check_for_software tgenv
   check_for_software imagemagick
@@ -205,9 +206,6 @@ setup_software() { #{{{
 
   # provide public url for locally running server
   # check_for_software ngrok
-
-  # add gitignore
-  npx add-gitignore
 
   # s-search config
   setup_symlink s .config/s
@@ -244,7 +242,7 @@ setup_mac() { #{{{
 
   check_for_cask notion
   check_for_cask scroll-reverser
-  # check_for_cask tiles
+  check_for_cask tiles
   check_for_cask discord
   check_for_software coreutils
   check_for_cask spotify
@@ -286,7 +284,14 @@ setup_yabai() { #{{{
 
 setup_flutter() { #{{{
   check_for_cask flutter
-  echo "Error - some steps are still missing here"
+  check_for_cask android-commandlinetools
+  flutter config --android-sdk /opt/homebrew/share/android-commandlinetools
+  sdkmanager --install "cmdline-tools;latest"
+  sdkmanager "build-tools;32.0.0" "platform-tools" "platforms;android-32"
+  flutter doctor --android-licenses
+  echo "Install xcode manually over the AppStore oder under https://developer.apple.com/download/all/"
+  sudo gem install cocoapods
+  flutter doctor
 } #}}}
 
 git submodule update --init --recursive
@@ -318,6 +323,9 @@ elif [ "$1" = 'latex' ]; then
 elif [ "$1" = 'software' ]; then
   setup_software
   echo "all software ready"
+elif [ "$1" = 'flutter' ]; then
+  setup_flutter
+  echo "flutter ready"
 else
   echo "Command not found! Valid commands are: "
   echo "  dotfiles"

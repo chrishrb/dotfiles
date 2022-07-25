@@ -28,3 +28,5 @@ require "user.autocommands"   -- all autocommands are stored here
 require "user.snippet"        -- extended snippets
 require "user.devicons"       -- extend icons here (e.g. for terraform)
 require "user.commands"       -- personal vim commands
+require "user.flutter"        -- neovim flutter config
+require "user.winbar"         -- winbar config

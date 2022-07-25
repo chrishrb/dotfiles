@@ -82,6 +82,7 @@ return packer.startup({function(use)
 
   -- Colorschemes
   use 'folke/tokyonight.nvim' -- nice and simple theme
+  use "EdenEast/nightfox.nvim"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -101,9 +102,20 @@ return packer.startup({function(use)
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
   use 'mfussenegger/nvim-jdtls' -- nvim java language server
-  use 'tami5/lspsaga.nvim'
+  use 'glepnir/lspsaga.nvim'
   use 'tpope/vim-projectionist' -- go to test / gT
   use 'HallerPatrick/py_lsp.nvim' -- python venv
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
 
   -- Telescope
   use "nvim-telescope/telescope.nvim" -- fuzzy finder for vim
@@ -123,6 +135,9 @@ return packer.startup({function(use)
   -- other
   use "hashivim/vim-terraform" --terraform
   use {"jghauser/mkdir.nvim", config = function() require("mkdir") end} -- mkdir
+
+  -- flutter
+  use {'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim'}
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
