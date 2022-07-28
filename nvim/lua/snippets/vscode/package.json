@@ -11,6 +11,10 @@
           "typescriptreact"
         ],
         "path": "./snippets/nextjs.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/cdk-snippets/core.code-snippets"
       }
     ]
   }

@@ -1,5 +1,24 @@
 local M = {}
 
+local function location_handler(_, result, ctx)
+  vim.g.lsp_last_word = vim.fn.expand('<cword>')
+  if result == nil or vim.tbl_isempty(result) then
+    print(ctx.method, 'No location found')
+    return nil
+  end
+  local util = require('vim.lsp.util')
+  if vim.tbl_islist(result) then
+    if #result == 1 then
+      util.jump_to_location(result[1], 'utf-8', true)
+    elseif #result > 1 then
+      util.jump_to_location(result[1], 'utf-8', true)
+      print("More than one result, fix it in handlers.lua")
+    end
+  else
+    util.jump_to_location(result, 'utf-8', true)
+  end
+end
+
 -- TODO: backfill this to template
 M.setup = function()
   local signs = {
@@ -42,6 +61,11 @@ M.setup = function()
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
     border = "rounded",
   })
+
+  vim.lsp.handlers['textDocument/declaration'] = location_handler
+  vim.lsp.handlers['textDocument/definition'] = location_handler
+  vim.lsp.handlers['textDocument/typeDefinition'] = location_handler
+  vim.lsp.handlers['textDocument/implementation'] = location_handler
 end
 
 local function lsp_highlight_document(client)
@@ -73,11 +97,7 @@ local function lsp_keymaps(bufnr)
 
   map(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<cr>", opts)
   map(bufnr, "n", "<leader>rr", "<cmd>Lspsaga rename<cr>", opts)
-  -- map(bufnr, "n", "<leader>n", "<cmd>Lspsaga code_action<cr>", opts)
-  -- map(bufnr, "n", "<leader>n", ":<c-u>Lspsaga range_code_action<cr>", opts)
   map(bufnr, "n", "gl", "<cmd>Lspsaga show_line_diagnostics<cr>", opts)
-  map(bufnr, "n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opts)
-  map(bufnr, "n", "]d", "<cmd>Lspsaga diagnostic_jump_next<cr>", opts)
   map(bufnr, "n", "<C-u>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<cr>", opts)
   map(bufnr, "n", "<C-d>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<cr>", opts)
 end

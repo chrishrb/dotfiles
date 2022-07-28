@@ -46,7 +46,7 @@ alias vimc="nvim ~/.config/nvim/init.lua"
 alias tm=tmuxinator
 alias zshconfig="nvim ~/.zshrc"
 alias zshreload="source ~/.zshrc"
-# alias ssh="kitty +kitten ssh" # needed for ssh to work properly
+alias ssh="TERM=xterm-256color ssh" # needed for ssh to work properly
 # }}}
 
 # {{{oh-my-zsh
