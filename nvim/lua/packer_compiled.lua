@@ -164,6 +164,16 @@ _G.packer_plugins = {
     path = "/Users/cherb/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
+  ["mason-lspconfig.nvim"] = {
+    loaded = true,
+    path = "/Users/cherb/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
+    url = "https://github.com/williamboman/mason-lspconfig.nvim"
+  },
+  ["mason.nvim"] = {
+    loaded = true,
+    path = "/Users/cherb/.local/share/nvim/site/pack/packer/start/mason.nvim",
+    url = "https://github.com/williamboman/mason.nvim"
+  },
   ["mkdir.nvim"] = {
     config = { "\27LJ\2\n%\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\nmkdir\frequire\0" },
     loaded = true,
@@ -195,10 +205,10 @@ _G.packer_plugins = {
     path = "/Users/cherb/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
-  ["nvim-lsp-installer"] = {
+  ["nvim-jdtls"] = {
     loaded = true,
-    path = "/Users/cherb/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
-    url = "https://github.com/williamboman/nvim-lsp-installer"
+    path = "/Users/cherb/.local/share/nvim/site/pack/packer/start/nvim-jdtls",
+    url = "https://github.com/mfussenegger/nvim-jdtls"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -206,7 +216,7 @@ _G.packer_plugins = {
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-tmux-navigation"] = {
-    config = { "\27LJ\2\nÁ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\16keybindings\1\0\6\tnext\14<C-Space>\aup\n<C-k>\16last_active\n<C-\\>\tleft\n<C-h>\nright\n<C-l>\tdown\n<C-j>\1\0\1\24disable_when_zoomed\1\nsetup\25nvim-tmux-navigation\frequire\0" },
+    config = { "\27LJ\2\nÁ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\16keybindings\1\0\6\tdown\n<C-j>\tleft\n<C-h>\aup\n<C-k>\tnext\14<C-Space>\nright\n<C-l>\16last_active\n<C-\\>\1\0\1\24disable_when_zoomed\1\nsetup\25nvim-tmux-navigation\frequire\0" },
     loaded = true,
     path = "/Users/cherb/.local/share/nvim/site/pack/packer/start/nvim-tmux-navigation",
     url = "https://github.com/alexghergh/nvim-tmux-navigation"
@@ -302,7 +312,7 @@ _G.packer_plugins = {
 time([[Defining packer_plugins]], false)
 -- Config for: nvim-tmux-navigation
 time([[Config for nvim-tmux-navigation]], true)
-try_loadstring("\27LJ\2\nÁ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\16keybindings\1\0\6\tnext\14<C-Space>\aup\n<C-k>\16last_active\n<C-\\>\tleft\n<C-h>\nright\n<C-l>\tdown\n<C-j>\1\0\1\24disable_when_zoomed\1\nsetup\25nvim-tmux-navigation\frequire\0", "config", "nvim-tmux-navigation")
+try_loadstring("\27LJ\2\nÁ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\16keybindings\1\0\6\tdown\n<C-j>\tleft\n<C-h>\aup\n<C-k>\tnext\14<C-Space>\nright\n<C-l>\16last_active\n<C-\\>\1\0\1\24disable_when_zoomed\1\nsetup\25nvim-tmux-navigation\frequire\0", "config", "nvim-tmux-navigation")
 time([[Config for nvim-tmux-navigation]], false)
 -- Config for: trouble.nvim
 time([[Config for trouble.nvim]], true)

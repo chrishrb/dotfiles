@@ -4,6 +4,8 @@
 # \__/_//_/_/ /_/___/_//_/_/ /_.__/   http://www.github.com/chrishrb/
 #                                  
 
+# zmodload zsh/zprof
+
 # {{{env
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/dotfiles/zsh/oh-my-zsh"
@@ -16,6 +18,7 @@ export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
+export PATH="$HOME/bin/jdt-language-server-1.9.0-202203031534/bin:$PATH"
 
 # increase speed in git repos
 RPROMPT=''
@@ -70,13 +73,8 @@ plugins=(
   dnf
   zsh-syntax-highlighting
   zsh-autosuggestions
-  tmuxinator
   last-working-dir
   git-open
-  aws
-  # kubectl
-  terraform
-  terragrunt
   autoswitch_virtualenv
 )
 
@@ -190,7 +188,7 @@ function make_tar {
   # Timetrap extension {{{
   t () {
     if [[ $1 == "lastweek" ]]; then
-      t week -s $(gdate -d "1 week ago last monday" +%F)
+      t week all -s $(gdate -d "1 week ago" +%F)
     else
       timetrap "$@"
     fi
@@ -253,4 +251,6 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+# zprof
 

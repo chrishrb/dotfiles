@@ -1,7 +1,7 @@
 # /Users/cherb/.config/tmuxinator/main.yml
 
-name: work
-root: ~/jam-dev/work/cris/
+name: aroma
+root: ~/jam-dev/work/duali-project/
 
 # Optional tmux socket
 # socket_name: foo
@@ -12,7 +12,7 @@ root: ~/jam-dev/work/cris/
 # Project hooks
 
 # Runs on project start, always
-on_project_start: t s cris
+# on_project_start: t s aroma
 
 # Run on project start, the first time
 # on_project_first_start: command
@@ -45,12 +45,6 @@ on_project_start: t s cris
 # attach: false
 
 windows:
-  -  Infrastructure:
-    - cd cris-infrastructure
-  -  Frontend:
-    - cd cris-frontend
-  -  Backend:
-    - cd cris-backend
-  -  Lambda:
-    - cd cris-asn-copy
-  - 羽Time: # empty
+  -  aroma-flutter:
+    - cd aroma-app && clear
+  -  shell:

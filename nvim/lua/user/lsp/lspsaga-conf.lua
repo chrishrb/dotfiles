@@ -6,15 +6,14 @@ end
 lspsaga.init_lsp_saga {
   border_style = "single",
 
-  code_action_icon = " ",
+  code_action_icon = "",
   diagnostic_header = { "", "", "", "" },
   code_action_lightbulb = {
-    enable = true,
+    enable = false, -- disabled because of flutter
     sign = true,
     sign_priority = 40,
     virtual_text = true,
   },
-
   finder_icons = {
     def = "",
     ref = "",
