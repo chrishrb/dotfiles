@@ -1,7 +1,7 @@
 # /Users/cherb/.config/tmuxinator/main.yml
 
-name: cris
-root: ~/jam-dev/work/cris/
+name: rust
+root: ~/jam-dev/study/in5/low-level-programming/
 
 # Optional tmux socket
 # socket_name: foo
@@ -12,7 +12,7 @@ root: ~/jam-dev/work/cris/
 # Project hooks
 
 # Runs on project start, always
-# on_project_start: t s cris
+# on_project_start: t s aroma
 
 # Run on project start, the first time
 # on_project_first_start: command
@@ -45,13 +45,8 @@ root: ~/jam-dev/work/cris/
 # attach: false
 
 windows:
-  -  cris-infra:
-    - cd cris-infrastructure && clear
-  -  cris-devops:
-    - cd cris-devops && clear
-  -  cris-frontend:
-    - cd cris-frontend && clear
-  -  cris-backend:
-    - cd vw-cris-backend && clear
-  -  cris-lambda:
-    - cd cris-asn-copy && clear
+  -  nvim:
+    # - cd aroma-app && clear
+  -  nvim-config:
+    - vimc
+  -  shell:

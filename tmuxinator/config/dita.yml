@@ -47,6 +47,8 @@ root: ~/jam-dev/work/cris/
 windows:
   -  dita-infra:
     - cd dita-infrastructure && clear
+  -  dita-devops:
+    - cd dita-devops && clear
   -  dita-gateway:
     - cd dita-lkwcx-gateway && clear
   -  dita-track-and-trace:

@@ -194,6 +194,7 @@ setup_software() { #{{{
   check_for_software watchman
   check_for_software ghostscript gs
   check_for_software aws awscli
+  check_for_software cloud-nuke
   # check_for_software tfenv
   # check_for_software tgenv
   check_for_software imagemagick
@@ -294,6 +295,16 @@ setup_flutter() { #{{{
   flutter doctor
 } #}}}
 
+setup_rust() { #{{{
+	if ! [ -x "$(command -v 'rustup')" ]; then
+    echo "installing rust.."
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+	else
+		echo "rust and all utilities are installed."
+	fi
+  check_for_software 'rust-analyzer'
+} #}}}
+
 git submodule update --init --recursive
 
 if [ "$1" = 'dotfiles' ]; then
@@ -326,6 +337,9 @@ elif [ "$1" = 'software' ]; then
 elif [ "$1" = 'flutter' ]; then
   setup_flutter
   echo "flutter ready"
+elif [ "$1" = 'rust' ]; then
+  setup_rust
+  echo "rust ready"
 else
   echo "Command not found! Valid commands are: "
   echo "  dotfiles"
@@ -336,5 +350,6 @@ else
   echo "  tmux"
   echo "  yabai"
   echo "  latex"
-  echo "  software"
+  echo "  flutter"
+  echo "  rust"
 fi

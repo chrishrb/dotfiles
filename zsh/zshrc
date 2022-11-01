@@ -20,6 +20,8 @@ export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
 export PATH="$HOME/bin/jdt-language-server-1.9.0-202203031534/bin:$PATH"
 
+export GOPATH="$HOME/go"
+
 # increase speed in git repos
 RPROMPT=''
 DISABLE_UNTRACKED_FILES_DIRTY="true"
@@ -29,7 +31,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 ## navigation aliases
 alias dev="cd ~/jam-dev/"
 alias home="cd ~/jam-dev/home/"
-alias study="cd ~/jam-dev/study/in4/"
+alias study="cd ~/jam-dev/study/in5/"
 alias work="cd ~/jam-dev/work/cris/"
 
 ## other
@@ -251,6 +253,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
-# zprof
-

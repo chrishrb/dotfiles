@@ -1,10 +1,6 @@
-if not vim.g.tokyonight_style then
-  vim.g.tokyonight_style = "night"
-end
-
 vim.cmd [[
   try
-    colorscheme tokyonight
+    colorscheme tokyonight-night
   catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme default
     set background=dark

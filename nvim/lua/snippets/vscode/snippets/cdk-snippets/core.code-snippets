@@ -1,10 +1,4 @@
 {
-  "CDK Import": {
-    "prefix": "cdk-import",
-    "body": ["import * as ${1:service} from 'aws-cdk-lib/aws-${1:service}';"],
-    "description": "Generate a CDK import statement"
-  },
-
   "CDK Construct": {
     "prefix": "cdk-construct",
     "body": [
@@ -15,7 +9,7 @@
       "}",
       "",
       "export class ${1:ConstructorName} extends Construct {",
-      "  constructor(scope: cdk.Construct, id: string, props: ${1:ConstructorName}Props) {",
+      "  constructor(scope: Construct, id: string, props: ${1:ConstructorName}Props) {",
       "    super(scope, id);",
       "",
       "    ${3}",
@@ -45,39 +39,4 @@
     ],
     "description": "Generate a CDK stack scaffold"
   },
-
-  "CDK App": {
-    "prefix": "cdk-app",
-    "body": [
-      "#!/usr/bin/env node",
-      "import 'source-map-support/register';",
-      "import * as cdk from 'aws-cdk-lib';",
-      "",
-      "const app = new cdk.App();",
-      "",
-      "$1"
-    ],
-    "description": "Generate a CDK app scaffold"
-  },
-
-  "Cfn Parameter": {
-    "prefix": "cfn-parameter",
-    "body": [
-      "new cdk.CfnParameter(this, \"${1:id}\", {",
-      "  type: \"${2|String,Number,List<Number>,CommaDelimitedList|}\"",
-      "})"
-    ],
-    "description": "Add a CloudFormation parameter"
-  },
-
-  "Cfn Output": {
-    "prefix": "cfn-output",
-    "body": [
-      "new cdk.CfnOutput(this, \"${1:id}\", {",
-      "  value: \"${2}\",",
-      "  exportName: \"${1}\"",
-      "})"
-    ],
-    "description": "Add a CloudFormation output"
-  }
 }

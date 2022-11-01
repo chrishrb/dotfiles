@@ -47,4 +47,6 @@ root: ~/jam-dev/work/duali-project/
 windows:
   -  aroma-flutter:
     - cd aroma-app && clear
+  -  aroma-cms:
+    - cd aroma-cms && clear
   -  shell:

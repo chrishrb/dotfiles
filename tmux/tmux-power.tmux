@@ -34,6 +34,7 @@ show_ram_cpu_percentage="$(tmux_get @tmux_power_show_ram_cpu_percentage false)"
 prefix_highlight_pos=$(tmux_get @tmux_power_prefix_highlight_pos)
 time_format=$(tmux_get @tmux_power_time_format '%T')
 date_format=$(tmux_get @tmux_power_date_format '%F')
+
 # short for Theme-Colour
 TC=$(tmux_get '@tmux_power_theme' 'gold')
 case $TC in
@@ -78,6 +79,7 @@ G09=#585858 #240
 G10=#626262 #241
 G11=#6c6c6c #242
 G12=#767676 #243
+G13=#7CFC00	# green
 
 FG="$G10"
 BG="$G04"
@@ -123,11 +125,14 @@ tmux_set @mode_indicator_sync_mode_style "bg=red,fg=$G04"
 tmux_set status-right-bg "$G04"
 tmux_set status-right-fg "G12"
 tmux_set status-right-length 150
-RS="#[fg=$TC,bg=$G06]$time_icon $time_format #[fg=$TC,bg=$G06]$left_arrow_icon#[fg=$G04,bg=$TC] $date_icon $date_format #[bg=$G04]|#{tmux_mode_indicator}"
+RS="#[fg=$TC,bg=$G06]$time_icon $time_format #[fg=$TC,bg=$G06]$left_arrow_icon#[fg=$G04,bg=$TC] $date_icon $date_format #[bg=$G04]#{tmux_mode_indicator}"
 if [[ $prefix_highlight_pos == 'R' || $prefix_highlight_pos == 'LR' ]]; then
     RS="#{prefix_highlight}$RS"
 fi
 RS="#[fg=$G06,bg=$G04]$left_arrow_icon#[fg=$G06,bg=$G06] $RS"
+
+timetrap_indicator="#[fg=$TC,bg=$G04]$left_arrow_icon#[fg=$G06,bg=$TC]#(/Users/cherb/dotfiles/tmux/timetrap-status.sh)#[fg=$TC,bg=$G04]$right_arrow_icon#[fg=$G06,bg=$G06]"
+RS="$timetrap_indicator$RS"
 tmux_set status-right "$RS"
 
 # Window status

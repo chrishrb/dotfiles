@@ -9,7 +9,7 @@ if not status_cmp_ok then
   return
 end
 capabilities.textDocument.completion.completionItem.snippetSupport = false
-capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
 local status, jdtls = pcall(require, "jdtls")
 if not status then
@@ -68,7 +68,10 @@ local config = {
   cmd = {
 
     -- 💀
-    "java", -- or '/path/to/java11_or_newer/bin/java'
+    -- use only java18.0.1.1
+    "/Users/cherb/.sdkman/candidates/java/18.0.1.1-open/bin/java",
+
+    --"java", -- or '/path/to/java11_or_newer/bin/java'
     -- depends on if `java` is in your $PATH env variable and if it points to the right version.
 
     "-Declipse.application=org.eclipse.jdt.ls.core.id1",

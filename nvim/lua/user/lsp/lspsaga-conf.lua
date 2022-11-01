@@ -20,7 +20,6 @@ lspsaga.init_lsp_saga {
     link = ""
   },
   max_preview_lines = 10,
-  definition_preview_icon = "",
   server_filetype_map = {},
 }
 

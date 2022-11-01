@@ -45,7 +45,6 @@ packer.init {
 return packer.startup({function(use)
   -- My plugins here
   use "wbthomason/packer.nvim"            -- Have packer manage itself
-  use "nvim-lua/popup.nvim"               -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim"             -- Useful lua functions used ny lots of plugins
   use "windwp/nvim-autopairs"             -- Autopairs, integrates with both cmp and treesitter
   use "numToStr/Comment.nvim"             -- Easily comment stuff
@@ -58,10 +57,14 @@ return packer.startup({function(use)
   use "lewis6991/impatient.nvim"          -- makes vim faster
   use "lukas-reineke/indent-blankline.nvim"   -- indent line
   use "goolord/alpha-nvim"                -- nice start screen
-  -- use "antoinemadec/FixCursorHold.nvim"   -- This is needed to fix lsp doc highlight
   use "folke/which-key.nvim"              -- whichkey help
-  use "tpope/vim-surround"                -- delete/change surround
-  use 'justinmk/vim-sneak'                -- s / S navigation
+  use({
+    "kylechui/nvim-surround",             -- change surround e.g. ys{motion}{char}, ds{char}, cs{target}{replacement}
+    tag = "*",
+    config = function()
+      require("nvim-surround").setup({})
+    end
+  })
   use "vim-scripts/BufOnly.vim"           -- delete all bufs except the one you are working
   use { 'alexghergh/nvim-tmux-navigation', config = function() -- tmux navigation
         require'nvim-tmux-navigation'.setup {
@@ -82,7 +85,6 @@ return packer.startup({function(use)
 
   -- Colorschemes
   use 'folke/tokyonight.nvim'             -- nice and simple theme
-  use "EdenEast/nightfox.nvim"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"                  -- The completion plugin
@@ -93,7 +95,7 @@ return packer.startup({function(use)
   use "hrsh7th/cmp-nvim-lsp"              -- cmp for lsp
 
   -- snippets
-  use "L3MON4D3/LuaSnip"                  --snippet engine
+  use "L3MON4D3/LuaSnip"                  -- snippet engine
   use "rafamadriz/friendly-snippets"      -- a bunch of snippets to use
 
   -- LSP
@@ -102,13 +104,10 @@ return packer.startup({function(use)
       "williamboman/mason-lspconfig.nvim",
       "neovim/nvim-lspconfig",
   }
-  -- use "williamboman/nvim-lsp-installer"   -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim"      -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim"   -- for formatters and linters
   use 'mfussenegger/nvim-jdtls'           -- nvim java language server
   use 'glepnir/lspsaga.nvim'              -- new lspsaga for nice rename windows etc
-  -- use 'tpope/vim-projectionist'           -- go to test / gT
-  -- use 'HallerPatrick/py_lsp.nvim'         -- python venv
   use {
     "folke/trouble.nvim",                 -- show diagnostics of current document/workspace
     requires = "kyazdani42/nvim-web-devicons",
@@ -138,6 +137,12 @@ return packer.startup({function(use)
 
   -- flutter
   use {'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim'}  -- flutter all-in-one solution
+
+  -- rust
+  use 'simrat39/rust-tools.nvim' -- rust tools
+
+  -- go
+  use 'ray-x/go.nvim' -- go tools
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
