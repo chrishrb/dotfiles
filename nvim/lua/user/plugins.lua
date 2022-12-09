@@ -108,13 +108,13 @@ return packer.startup({function(use)
   use "jose-elias-alvarez/null-ls.nvim"   -- for formatters and linters
   use 'mfussenegger/nvim-jdtls'           -- nvim java language server
   use 'glepnir/lspsaga.nvim'              -- new lspsaga for nice rename windows etc
-  use {
-    "folke/trouble.nvim",                 -- show diagnostics of current document/workspace
-    requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("trouble").setup {}
-    end
-  }
+  --[[ use { ]]
+  --[[   "folke/trouble.nvim",                 -- show diagnostics of current document/workspace ]]
+  --[[   requires = "kyazdani42/nvim-web-devicons", ]]
+  --[[   config = function() ]]
+  --[[     require("trouble").setup {} ]]
+  --[[   end ]]
+  --[[ } ]]
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"     -- fuzzy finder for vim

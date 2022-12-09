@@ -66,6 +66,14 @@ M.setup = function()
   vim.lsp.handlers['textDocument/definition'] = location_handler
   vim.lsp.handlers['textDocument/typeDefinition'] = location_handler
   vim.lsp.handlers['textDocument/implementation'] = location_handler
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = true,
+      underline = true,
+      signs = true,
+      update_in_insert = true
+    }
+  )
 end
 
 local function lsp_highlight_document(client)
@@ -78,7 +86,7 @@ local function lsp_highlight_document(client)
         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
-    ]],
+    ]] ,
       false
     )
   end

@@ -17,6 +17,7 @@ null_ls.setup({
 		formatting.stylua,
     diagnostics.pylint,
     diagnostics.mypy,
-    formatting.isort
+    formatting.isort,
+    formatting.google_java_format.with({ extra_args = {"--aosp" } }),
 	},
 })

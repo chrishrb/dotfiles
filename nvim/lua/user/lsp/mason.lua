@@ -22,6 +22,7 @@ local servers = {
   "clangd",
   "rust_analyzer",
   "gopls",
+  "texlab",
 }
 
 mason.setup()
