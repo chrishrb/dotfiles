@@ -173,7 +173,7 @@ setup_latex() { #{{{
   sudo getnonfreefonts --sys -a
 
   # install dependencies
-  sudo tlmgr install latexmk ucs sectsty apacite titling blindtext todonotes texcount
+  sudo tlmgr install latexmk ucs sectsty apacite titling blindtext todonotes texcount soul
 } # }}}
 
 setup_software() { #{{{

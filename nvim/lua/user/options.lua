@@ -44,7 +44,6 @@ for k, v in pairs(options) do
 end
 
 -- Do not source these default plugins
-vim.g.did_load_filetypes = 1
 local disabled_built_ins = {
     "netrw",
     "netrwPlugin",

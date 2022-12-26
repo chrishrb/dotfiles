@@ -79,6 +79,7 @@ plugins=(
   last-working-dir
   git-open
   autoswitch_virtualenv
+  kubectl
 )
 
 source $ZSH/oh-my-zsh.sh

@@ -80,7 +80,6 @@ return packer.startup({function(use)
         }
     end
   }
-  use 'nathom/filetype.nvim'              -- faster then builtin filetype
   use 'stsewd/gx-extended.vim'            -- use gx to go to link
 
   -- Colorschemes
@@ -108,13 +107,19 @@ return packer.startup({function(use)
   use "jose-elias-alvarez/null-ls.nvim"   -- for formatters and linters
   use 'mfussenegger/nvim-jdtls'           -- nvim java language server
   use 'glepnir/lspsaga.nvim'              -- new lspsaga for nice rename windows etc
-  --[[ use { ]]
-  --[[   "folke/trouble.nvim",                 -- show diagnostics of current document/workspace ]]
-  --[[   requires = "kyazdani42/nvim-web-devicons", ]]
-  --[[   config = function() ]]
-  --[[     require("trouble").setup {} ]]
-  --[[   end ]]
-  --[[ } ]]
+  use {
+    "folke/trouble.nvim",                 -- show diagnostics of current document/workspace
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {}
+    end
+  }
+  use {                                   -- debugging with nvim
+    "mfussenegger/nvim-dap",              -- debugger
+    "rcarriga/nvim-dap-ui",               -- ui for debugger
+    "jayp0521/mason-nvim-dap.nvim",       -- mason adapter for dap
+    "theHamsta/nvim-dap-virtual-text",    -- show line visual
+  }
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"     -- fuzzy finder for vim

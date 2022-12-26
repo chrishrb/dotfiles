@@ -12,6 +12,7 @@ require "user.plugins"        -- plugins
 require "user.colorscheme"    -- define colorscheme
 require "user.cmp"            -- completion engine
 require "user.lsp"            -- language server protocol
+require "user.dap"            -- debugger for nvim
 require "user.telescope"      -- fuzzy finder
 require "user.treesitter"     -- improved syntax highlighting
 require "user.autopairs"      -- extend with matching brackets
