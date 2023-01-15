@@ -30,3 +30,4 @@ require "user.snippet"        -- extended snippets
 require "user.devicons"       -- extend icons here (e.g. for terraform)
 require "user.commands"       -- personal vim commands
 require "user.winbar"         -- winbar config
+require "user.hover"          -- hover config (show documentation when pressing K)

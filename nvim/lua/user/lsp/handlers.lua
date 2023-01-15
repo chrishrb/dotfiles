@@ -19,7 +19,6 @@ local function location_handler(_, result, ctx)
   end
 end
 
--- TODO: backfill this to template
 M.setup = function()
   local signs = {
     { name = "DiagnosticSignError", text = "" },
@@ -103,16 +102,16 @@ local function lsp_keymaps(bufnr)
   map(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
   map(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 
-  map(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<cr>", opts)
-  map(bufnr, "n", "<leader>rr", "<cmd>Lspsaga rename<cr>", opts)
-  map(bufnr, "n", "gl", "<cmd>Lspsaga show_line_diagnostics<cr>", opts)
-  map(bufnr, "n", "<C-u>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<cr>", opts)
-  map(bufnr, "n", "<C-d>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<cr>", opts)
+  map(bufnr, "n", "<leader>rr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+  map(bufnr, "n", "<leader>n", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 end
 
 M.on_attach = function(client, bufnr)
   if client.name == "tsserver" then
     client.server_capabilities.document_formatting = false
+  end
+  if client.server_capabilities.documentSymbolProvider then
+    require("nvim-navic").attach(client, bufnr)
   end
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)

@@ -108,3 +108,8 @@ nvim_tree.setup {
     }
   }
 }
+
+-- activate file operations for nvim-tree
+require("lsp-file-operations").setup{
+  debug = false
+}

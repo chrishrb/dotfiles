@@ -45,11 +45,18 @@ packer.init {
 return packer.startup({function(use)
   -- My plugins here
   use "wbthomason/packer.nvim"            -- Have packer manage itself
-  use "nvim-lua/plenary.nvim"             -- Useful lua functions used ny lots of plugins
+  use "nvim-lua/plenary.nvim"             -- Useful lua functions used in lots of plugins
   use "windwp/nvim-autopairs"             -- Autopairs, integrates with both cmp and treesitter
   use "numToStr/Comment.nvim"             -- Easily comment stuff
   use "kyazdani42/nvim-web-devicons"      -- Icons for nvim-tree
   use "kyazdani42/nvim-tree.lua"          -- neovim tree
+  use {                                   -- nvim tree file renamings
+    'antosha417/nvim-lsp-file-operations',
+    requires = {
+      { "nvim-lua/plenary.nvim" },
+      { "kyazdani42/nvim-tree.lua" },
+    }
+  }
   use "akinsho/bufferline.nvim"           -- bufferline with different "tabs"
   use "moll/vim-bbye"                     -- delete buffers without closing your window or messing up your layout
   use "nvim-lualine/lualine.nvim"         -- line below for showing INSERT, branch, line number and problems
@@ -106,7 +113,6 @@ return packer.startup({function(use)
   use "tamago324/nlsp-settings.nvim"      -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim"   -- for formatters and linters
   use 'mfussenegger/nvim-jdtls'           -- nvim java language server
-  use 'glepnir/lspsaga.nvim'              -- new lspsaga for nice rename windows etc
   use {
     "folke/trouble.nvim",                 -- show diagnostics of current document/workspace
     requires = "kyazdani42/nvim-web-devicons",
@@ -119,6 +125,13 @@ return packer.startup({function(use)
     "rcarriga/nvim-dap-ui",               -- ui for debugger
     "jayp0521/mason-nvim-dap.nvim",       -- mason adapter for dap
     "theHamsta/nvim-dap-virtual-text",    -- show line visual
+  }
+  use {                                   -- winbar
+      "SmiteshP/nvim-navic",
+      requires = "neovim/nvim-lspconfig"
+  }
+  use {
+    "chrishrb/hover.nvim",               -- get documentation when pressing K
   }
 
   -- Telescope

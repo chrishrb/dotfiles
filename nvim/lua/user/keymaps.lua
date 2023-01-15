@@ -43,10 +43,6 @@ keymap("n", "<C-Down>", ":resize -2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize +2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize -2<CR>", opts)
 
--- Code action
-keymap("n", "<leader>n", "<cmd>Lspsaga code_action<cr>", opts)
-keymap("v", "<leader>n", ":<c-u>Lspsaga range_code_action<cr>", opts)
-
 -- Git resolve conflicts
 keymap("n", "gdh", "<cmd>diffget //2<cr>", opts)
 keymap("n", "gdl", "<cmd>diffget //3<cr>", opts)
