@@ -200,6 +200,11 @@ _G.packer_plugins = {
     path = "/Users/cherb/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
     url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
   },
+  nvim = {
+    loaded = true,
+    path = "/Users/cherb/.local/share/nvim/site/pack/packer/start/nvim",
+    url = "https://github.com/catppuccin/nvim"
+  },
   ["nvim-autopairs"] = {
     loaded = true,
     path = "/Users/cherb/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
@@ -252,7 +257,7 @@ _G.packer_plugins = {
     url = "https://github.com/kylechui/nvim-surround"
   },
   ["nvim-tmux-navigation"] = {
-    config = { "\27LJ\2\nÁ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\16keybindings\1\0\6\nright\n<C-l>\tleft\n<C-h>\16last_active\n<C-\\>\tdown\n<C-j>\tnext\14<C-Space>\aup\n<C-k>\1\0\1\24disable_when_zoomed\1\nsetup\25nvim-tmux-navigation\frequire\0" },
+    config = { "\27LJ\2\nÁ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\16keybindings\1\0\6\16last_active\n<C-\\>\aup\n<C-k>\tdown\n<C-j>\tnext\14<C-Space>\nright\n<C-l>\tleft\n<C-h>\1\0\1\24disable_when_zoomed\1\nsetup\25nvim-tmux-navigation\frequire\0" },
     loaded = true,
     path = "/Users/cherb/.local/share/nvim/site/pack/packer/start/nvim-tmux-navigation",
     url = "https://github.com/alexghergh/nvim-tmux-navigation"
@@ -302,6 +307,11 @@ _G.packer_plugins = {
     path = "/Users/cherb/.local/share/nvim/site/pack/packer/start/rust-tools.nvim",
     url = "https://github.com/simrat39/rust-tools.nvim"
   },
+  ["tabline.nvim"] = {
+    loaded = true,
+    path = "/Users/cherb/.local/share/nvim/site/pack/packer/start/tabline.nvim",
+    url = "https://github.com/kdheepak/tabline.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/Users/cherb/.local/share/nvim/site/pack/packer/start/telescope.nvim",
@@ -336,6 +346,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: nvim-tmux-navigation
+time([[Config for nvim-tmux-navigation]], true)
+try_loadstring("\27LJ\2\nÁ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\16keybindings\1\0\6\16last_active\n<C-\\>\aup\n<C-k>\tdown\n<C-j>\tnext\14<C-Space>\nright\n<C-l>\tleft\n<C-h>\1\0\1\24disable_when_zoomed\1\nsetup\25nvim-tmux-navigation\frequire\0", "config", "nvim-tmux-navigation")
+time([[Config for nvim-tmux-navigation]], false)
 -- Config for: mkdir.nvim
 time([[Config for mkdir.nvim]], true)
 try_loadstring("\27LJ\2\n%\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\nmkdir\frequire\0", "config", "mkdir.nvim")
@@ -348,10 +362,6 @@ time([[Config for trouble.nvim]], false)
 time([[Config for nvim-surround]], true)
 try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18nvim-surround\frequire\0", "config", "nvim-surround")
 time([[Config for nvim-surround]], false)
--- Config for: nvim-tmux-navigation
-time([[Config for nvim-tmux-navigation]], true)
-try_loadstring("\27LJ\2\nÁ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\16keybindings\1\0\6\nright\n<C-l>\tleft\n<C-h>\16last_active\n<C-\\>\tdown\n<C-j>\tnext\14<C-Space>\aup\n<C-k>\1\0\1\24disable_when_zoomed\1\nsetup\25nvim-tmux-navigation\frequire\0", "config", "nvim-tmux-navigation")
-time([[Config for nvim-tmux-navigation]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

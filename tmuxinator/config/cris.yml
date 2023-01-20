@@ -49,6 +49,10 @@ windows:
     - cd cris-infrastructure && clear
   -  cris-devops:
     - cd cris-devops && clear
+  -  cris-cdk:
+    - cd cris-cdk-lib && clear
+  -  cris-monitoring:
+    - cd cris-monitoring && clear
   -  cris-frontend:
     - cd cris-frontend && clear
   -  cris-backend:

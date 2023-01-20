@@ -129,12 +129,12 @@ setup_zsh() { #{{{
   check_for_software zsh
   check_for_software fzf
   check_for_software direnv
-  check_for_software thefuck
   if ! [ -x "$(command -v fzf)" ]; then
       /usr/local/opt/fzf/install
   fi
   setup_symlink zsh/zshrc .zshrc
   setup_symlink zsh/zsh.d/ .config/zsh.d
+  setup_symlink zsh/zsh/ .config/zsh
   check_default_shell
 
   # cht.sh
@@ -156,6 +156,7 @@ setup_tmux() { #{{{
   fi
   setup_symlink tmux/tmux.conf .tmux.conf
   setup_symlink tmuxinator/config .config/tmuxinator
+  git clone https://github.com/catppuccin/alacritty.git ~/.config/alacritty/catppuccin
   echo "Press prefix (CTRL+A) + I to install all plugins"
 } #}}}
 
@@ -226,9 +227,9 @@ setup_dotfiles() { #{{{
   git config --global core.excludesfile "$DOTFILES_DIR/zsh/gitignore"
 } #}}}
 
-setup_kitty() { #{{{
-  check_for_cask kitty
-  setup_symlink kitty .config/kitty
+setup_alacritty() { #{{{
+  check_for_cask alacritty
+  setup_symlink alacritty .config/alacritty
 } #}}}
 
 setup_mac() { #{{{
@@ -252,7 +253,7 @@ setup_mac() { #{{{
   # check_for_cask font-fira-code
   echo "Install font manually"
   check_for_cask bitwarden
-  check_for_cask docker
+  check_for_software rancher
   check_for_software speedtest-cli
   check_for_cask vivaldi
 
@@ -313,9 +314,9 @@ if [ "$1" = 'dotfiles' ]; then
 elif [ "$1" = 'mac' ]; then
   setup_mac
   echo "mac ready"
-elif [ "$1" = 'kitty' ]; then
-  setup_kitty
-  echo "kitty ready"
+elif [ "$1" = 'alacritty' ]; then
+  setup_alacritty
+  echo "alacritty ready"
 elif [ "$1" = 'zsh' ]; then
   setup_zsh
   echo "Please log out and log back in for default shell to be initialized."

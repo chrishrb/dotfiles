@@ -19,7 +19,8 @@ require "user.autopairs"      -- extend with matching brackets
 require "user.comment"        -- commenting tool
 require "user.gitsigns"       -- gitsigns at the left
 require "user.nvim-tree"      -- file manager
-require "user.bufferline"     -- line on the top for viewing buffers
+--[[ require "user.bufferline"     -- line on the top for viewing buffers ]]
+require "user.tabline"
 require "user.lualine"        -- nice lualine on the bottom
 require "user.project"        -- IDE like project view
 require "user.indentline"     -- show indented lines

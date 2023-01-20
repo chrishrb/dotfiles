@@ -4,241 +4,29 @@
 # \__/_//_/_/ /_/___/_//_/_/ /_.__/   http://www.github.com/chrishrb/
 #                                  
 
-# zmodload zsh/zprof
+[ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
 
-# {{{env
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/dotfiles/zsh/oh-my-zsh"
+# history
+HISTFILE=~/.zsh_history
 
-export EDITOR="nvim"
-export TERM="xterm-kitty"
+# source
+plug "$HOME/.config/zsh/settings.zsh"
+plug "$HOME/.config/zsh/aliases.zsh"
+plug "$HOME/.config/zsh/exports.zsh"
+plug "$HOME/.config/zsh/functions.zsh"
+plug "$HOME/.config/zsh/theme.zsh"
 
-# Go, Rust, ruby
-export PATH="$HOME/go/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-export PATH="/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
-export PATH="$HOME/bin/jdt-language-server-1.9.0-202203031534/bin:$PATH"
+# plugins
+plug "zsh-users/zsh-autosuggestions"
+plug "zap-zsh/completions"
+plug "hlissner/zsh-autopair"
+plug "zap-zsh/supercharge"
+plug "zap-zsh/fzf"
+plug "zsh-users/zsh-syntax-highlighting"
+plug "zap-zsh/vim"
 
-export GOPATH="$HOME/go"
+bindkey -M viins '^A' beginning-of-line 
+bindkey -M viins '^E' end-of-line 
 
-# increase speed in git repos
-RPROMPT=''
-DISABLE_UNTRACKED_FILES_DIRTY="true"
-# }}}
-
-# {{{aliases
-## navigation aliases
-alias dev="cd ~/jam-dev/"
-alias home="cd ~/jam-dev/home/"
-alias study="cd ~/jam-dev/study/in5/"
-alias work="cd ~/jam-dev/work/cris/"
-alias vim-upgrade="brew upgrade neovim --fetch-HEAD"
-
-## other
-alias du='du -sh'
-alias df='df -h'
-alias ffs='sudo !!'
-alias myip='curl http://ipecho.net/plain; echo'
-alias c="cht.sh"
-alias copy="pbcopy"
-alias brewup="brew update; brew upgrade; brew cleanup; brew doctor"
-alias grep="rg"
-
-## vim,tmux,zsh
-alias vim='nvim'
-alias v='nvim'
-alias vimc="nvim ~/.config/nvim/init.lua"
-alias tm=tmuxinator
-alias zshconfig="nvim ~/.zshrc"
-alias zshreload="source ~/.zshrc"
-alias ssh="TERM=xterm-256color ssh" # needed for ssh to work properly
-# }}}
-
-# {{{oh-my-zsh
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
-ZSH_CUSTOM=$HOME/dotfiles/zsh/custom
-
-function zvm_config() {
-  ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
-  ZVM_VI_INSERT_ESCAPE_BINDKEY=jj
-}
-export VI_MODE_SET_CURSOR=true
-
-plugins=(
-  zsh-vi-mode
-  git
-  dnf
-  zsh-syntax-highlighting
-  zsh-autosuggestions
-  last-working-dir
-  git-open
-  autoswitch_virtualenv
-  kubectl
-)
-
-source $ZSH/oh-my-zsh.sh
-
-fpath=(~/.config/zsh.d/ $fpath)
-
-# vim-mode
-zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
-# }}}
-
-# # {{{functions
-vim-light () { # {{{
-    nvim --cmd "let g:tokyonight_style = 'day'" ${1}
-}
-# # }}}
-## {{{ youtube-dl
-dl-music() {
-  youtube-dl \
-    --ignore-errors \
-    --format bestaudio \
-    --extract-audio \
-    --audio-format mp3 \
-    --audio-quality 360K \
-    --restrict-filenames \
-    --embed-thumbnail \
-    --add-metadata \
-    --output "~/Music/youtube/%(title)s.%(ext)s" $1
-}
-
-dl-video() {
-  youtube-dl \
-    --ignore-errors \
-    --format bestaudio \
-    --extract-audio \
-    --audio-format mp3 \
-    --audio-quality 360K \
-    --restrict-filenames \
-    --embed-thumbnail \
-    --add-metadata \
-    --output "~/Video/youtube/%(title)s.%(ext)s" $1
-}
-
-## }}}
-## {{{ extract method
-SAVEIFS=$IFS
-IFS=$(echo -en "\n\b")
-
-function extract {
- if [ -z "$1" ]; then
-    # display usage if no parameters given
-    echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
-    echo "       extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"
- else
-    for n in "$@"
-    do
-      if [ -f "$n" ] ; then
-          case "${n%,}" in
-            *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
-                         tar xvf "$n"       ;;
-            *.lzma)      unlzma ./"$n"      ;;
-            *.bz2)       bunzip2 ./"$n"     ;;
-            *.cbr|*.rar)       unrar x -ad ./"$n" ;;
-            *.gz)        gunzip ./"$n"      ;;
-            *.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
-            *.z)         uncompress ./"$n"  ;;
-            *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
-                         7z x ./"$n"        ;;
-            *.xz)        unxz ./"$n"        ;;
-            *.exe)       cabextract ./"$n"  ;;
-            *.cpio)      cpio -id < ./"$n"  ;;
-            *.cba|*.ace)      unace x ./"$n"      ;;
-            *)
-                         echo "extract: '$n' - unknown archive method"
-                         return 1
-                         ;;
-          esac
-      else
-          echo "'$n' - file does not exist"
-          return 1
-      fi
-    done
-fi
-}
-
-IFS=$SAVEIFS
-## }}}
-# {{{ Create tar
-function make_tar {
-  tar -czvf "$@"
-}
-# }}}
-  # Timetrap extension {{{
-  t () {
-    if [[ $1 == "lastweek" ]]; then
-      t week all -s $(gdate -d "1 week ago" +%F)
-    else
-      timetrap "$@"
-    fi
-  }
-  # }}}
-
-eval "$(direnv hook zsh)"
-# # }}}
-
-# {{{plugins
-## {{{fuzzyfinder
-unamestr=`uname`
-if [[ "$unamestr" == 'Linux' ]]; then
-  # Linux
-  source /usr/share/doc/fzf/examples/key-bindings.zsh
-  source /usr/share/doc/fzf/examples/completion.zsh
-else
-  # Macos
-  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-fi
-
-export FZF_DEFAULT_OPTS="
---layout=reverse
---info=inline
---height=80%
---multi
---preview-window=:hidden
---preview '([[ -f {} ]] && (bat --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
---color='hl:148,hl+:154,pointer:032,marker:010,bg+:237,gutter:008'
---bind '?:toggle-preview'
---bind 'ctrl-a:select-all'
---bind 'ctrl-y:execute-silent(echo {+} | pbcopy)'
---bind 'ctrl-e:execute(echo {+} | vim -)'
-"
-## }}}
-
-## {{{sdkman
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/cherb/.sdkman"
-[[ -s "/Users/cherb/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/cherb/.sdkman/bin/sdkman-init.sh"
-## }}}
-
-autoload bashcompinit && bashcompinit
-autoload -Uz compinit && compinit
+# aws
 complete -C '/opt/homebrew/bin/aws_completer' aws
-# }}}
-
-# {{{ work specific
-export PATH="/Users/cherb/jam-dev/work/cris/vws2-credentials-loader:$PATH"
-export PATH="/Users/cherb/jam-dev/work/cris/vcl:$PATH"
-# }}}
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/cherb/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/cherb/miniforge3/etc/profile.d/conda.sh" ]; then
-        . "/Users/cherb/miniforge3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/cherb/miniforge3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<

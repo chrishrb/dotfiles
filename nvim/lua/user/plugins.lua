@@ -60,6 +60,7 @@ return packer.startup({function(use)
   use "akinsho/bufferline.nvim"           -- bufferline with different "tabs"
   use "moll/vim-bbye"                     -- delete buffers without closing your window or messing up your layout
   use "nvim-lualine/lualine.nvim"         -- line below for showing INSERT, branch, line number and problems
+  use 'kdheepak/tabline.nvim'
   use "ahmedkhalf/project.nvim"           -- project management with  vim
   use "lewis6991/impatient.nvim"          -- makes vim faster
   use "lukas-reineke/indent-blankline.nvim"   -- indent line
@@ -91,6 +92,8 @@ return packer.startup({function(use)
 
   -- Colorschemes
   use 'folke/tokyonight.nvim'             -- nice and simple theme
+
+  use 'catppuccin/nvim'
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"                  -- The completion plugin
