@@ -14,7 +14,7 @@
       },
       {
         "language": "typescript",
-        "path": "./snippets/cdk-snippets/core.code-snippets"
+        "path": "./snippets/cdk-snippets/core.code-snippets.json"
       }
     ]
   }

@@ -91,8 +91,6 @@ return packer.startup({function(use)
   use 'stsewd/gx-extended.vim'            -- use gx to go to link
 
   -- Colorschemes
-  use 'folke/tokyonight.nvim'             -- nice and simple theme
-
   use 'catppuccin/nvim'
 
   -- cmp plugins

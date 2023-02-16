@@ -50,13 +50,6 @@ local filetype = {
 	separator = { left = "", right = "" },
 }
 
-local filetype_tab = {
-	"filetype",
-	icon_only = true,
-	colored = true,
-	color = { bg = "#313244" },
-}
-
 local buffer = {
 	require 'tabline'.tabline_buffers,
 	separator = { left = "", right = "" },

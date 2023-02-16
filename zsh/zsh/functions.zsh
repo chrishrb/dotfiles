@@ -89,3 +89,45 @@ function make_tar {
     fi
   }
   # }}}
+# Find and replace a string in all files recursively, starting from the current directory.{{{
+# Adapted from code found at <http://forums.devshed.com/unix-help-35/unix-find-and-replace-text-within-all-files-within-a-146179.html>
+function replacein() {
+  find . -type f | xargs perl -pi -e "s/$1/$2/g"
+}# }}}
+# To search for a given string inside every file with the given filename{{{
+# (wildcards allowed) in the current directory, recursively:
+#   $ searchin filename pattern
+#
+# To search for a given string inside every file inside the current directory, recursively:
+#   $ searchin pattern
+function searchin() {
+  if [ -n "$2" ]; then
+    find . -name "$1" -type f -exec grep -l "$2" {} \;
+  else
+    find . -type f -exec grep -l "$1" {} \;
+  fi
+}# }}}
+function urlencode() {
+    # urlencode <string>
+
+    old_lc_collate=$LC_COLLATE
+    LC_COLLATE=C
+
+    local length="${#1}"
+    for (( i = 0; i < length; i++ )); do
+        local c="${1:$i:1}"
+        case $c in
+            [a-zA-Z0-9.~_-]) printf '%s' "$c" ;;
+            *) printf '%%%02X' "'$c" ;;
+        esac
+    done
+
+    LC_COLLATE=$old_lc_collate
+}
+
+function urldecode() {
+    # urldecode <string>
+
+    local url_encoded="${1//+/ }"
+    printf '%b' "${url_encoded//%/\\x}"
+}

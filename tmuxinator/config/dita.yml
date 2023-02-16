@@ -51,7 +51,7 @@ windows:
     - cd dita-devops && clear
   -  dita-cdk:
     - cd dita-cdk-lib && clear
-  -  cris-monitoring:
+  -  dita-monitoring:
     - cd dita-monitoring && clear
   -  dita-gateway:
     - cd dita-lkwcx-gateway && clear

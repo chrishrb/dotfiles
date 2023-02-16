@@ -22,3 +22,4 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 export PATH="/Users/cherb/.rd/bin:$PATH"
+export CDK_DOCKER=nerdctl

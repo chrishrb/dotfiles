@@ -17,16 +17,22 @@ plug "$HOME/.config/zsh/functions.zsh"
 plug "$HOME/.config/zsh/theme.zsh"
 
 # plugins
-plug "zsh-users/zsh-autosuggestions"
-plug "zap-zsh/completions"
+plug "chrishrb/zsh-kubectl"
+plug "wintermi/zsh-rust"
 plug "hlissner/zsh-autopair"
 plug "zap-zsh/supercharge"
 plug "zap-zsh/fzf"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "zap-zsh/vim"
+plug "paulirish/git-open"
+plug "zsh-users/zsh-autosuggestions"
+plug "zap-zsh/completions" # INFO: plugin must be at the end
 
+# extend zap-zsh vim and supercharge
+bindkey -M viins 'jj' vi-cmd-mode
 bindkey -M viins '^A' beginning-of-line 
 bindkey -M viins '^E' end-of-line 
+zstyle ':completion:*' special-dirs true
 
 # aws
 complete -C '/opt/homebrew/bin/aws_completer' aws

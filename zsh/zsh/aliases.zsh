@@ -5,7 +5,6 @@ alias dev="cd ~/jam-dev/"
 alias home="cd ~/jam-dev/home/"
 alias study="cd ~/jam-dev/study/in5/"
 alias work="cd ~/jam-dev/work/cris/"
-alias vim-upgrade="brew upgrade neovim --fetch-HEAD"
 
 ## other
 alias du='du -sh'
@@ -17,6 +16,8 @@ alias copy="pbcopy"
 alias brewup="brew update; brew upgrade; brew cleanup; brew doctor"
 alias vimup="brew upgrade neovim --fetch-HEAD"
 alias grep="rg"
+alias docker='nerdctl'
+alias docker-compose='nerdctl compose'
 
 ## vim,tmux,zsh
 alias vim='nvim'

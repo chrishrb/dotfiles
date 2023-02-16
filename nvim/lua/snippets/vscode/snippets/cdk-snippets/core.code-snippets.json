@@ -18,7 +18,6 @@
     ],
     "description": "Generate a CDK construct scaffold"
   },
-
   "CDK Stack": {
     "prefix": "cdk-stack",
     "body": [
@@ -38,5 +37,5 @@
       "}"
     ],
     "description": "Generate a CDK stack scaffold"
-  },
+  }
 }

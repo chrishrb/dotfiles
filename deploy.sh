@@ -133,15 +133,8 @@ setup_zsh() { #{{{
       /usr/local/opt/fzf/install
   fi
   setup_symlink zsh/zshrc .zshrc
-  setup_symlink zsh/zsh.d/ .config/zsh.d
   setup_symlink zsh/zsh/ .config/zsh
   check_default_shell
-
-  # cht.sh
-  if ! [ -f "/usr/local/bin/cht.sh" ]; then
-    curl https://cht.sh/:cht.sh > /usr/local/bin/cht.sh
-    chmod +x /usr/local/bin/cht.sh
-  fi
 } #}}}
 
 setup_tmux() { #{{{
@@ -209,13 +202,14 @@ setup_software() { #{{{
   # provide public url for locally running server
   # check_for_software ngrok
 
+  check_for_cask utm
+
   # s-search config
   setup_symlink s .config/s
 
   # for youtube dl
   mkdir -p ~/Music/youtube/
   mkdir -p ~/Video/youtube/
-  echo "Install cw manually (https://github.com/lucagrulla/cw)"
 } #}}}
 
 setup_dotfiles() { #{{{
@@ -230,6 +224,7 @@ setup_dotfiles() { #{{{
 setup_alacritty() { #{{{
   check_for_cask alacritty
   setup_symlink alacritty .config/alacritty
+  echo "Install icon here: https://github.com/k0nserv/kitty-icon"
 } #}}}
 
 setup_mac() { #{{{
