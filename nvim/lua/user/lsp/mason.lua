@@ -92,7 +92,7 @@ for _, server in pairs(servers) do
     end
 
     go_tools.setup(go_opts)
-    goto continue
+	 	opts = vim.tbl_deep_extend("force", require('go.lsp').config(), opts)
   end
 
   lspconfig[server].setup(opts)
