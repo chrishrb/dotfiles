@@ -1,3 +1,4 @@
+-- TODO: change to lua
 vim.cmd [[
   augroup _general_settings
     autocmd!

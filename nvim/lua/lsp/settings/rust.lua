@@ -68,8 +68,8 @@ return {
         install rust-analyzer with brew: brew install rust-analyzer
     --]]
     cmd = { "/opt/homebrew/bin/rust-analyzer" },
-    on_attach = require("user.lsp.handlers").on_attach,
-    capabilities = require("user.lsp.handlers").capabilities,
+    on_attach = require("lsp.handlers").on_attach,
+    capabilities = require("lsp.handlers").capabilities,
 
     settings = {
       ["rust-analyzer"] = {

@@ -1,4 +1,9 @@
-require("catppuccin").setup {
+local status_ok, catppuccin = pcall(require, "catppuccin")
+if not status_ok then
+  return
+end
+
+catppuccin.setup {
     color_overrides = {
         all = {
             text = "#ffffff",
@@ -12,15 +17,6 @@ require("catppuccin").setup {
     }
 }
 
-vim.cmd [[
-  try
-    colorscheme catppuccin
-  catch /^Vim\%((\a\+)\)\=:E185/
-    colorscheme default
-    set background=dark
-  endtry
-]]
-
 vim.opt.fillchars = {
   horiz = '━',
   horizup = '┻',
@@ -30,3 +26,5 @@ vim.opt.fillchars = {
   vertright = '┣',
   verthoriz = '╋',
 }
+
+vim.cmd.colorscheme("catppuccin")

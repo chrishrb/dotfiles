@@ -14,7 +14,7 @@ local servers = {
   "html",
   "jdtls",
   "jsonls",
-  "sumneko_lua",
+  "lua_ls",
   "tsserver",
   "pyright",
   "yamlls",
@@ -42,20 +42,20 @@ local opts = {}
 table.insert(servers, "dartls")
 for _, server in pairs(servers) do
   opts = {
-    on_attach = require("user.lsp.handlers").on_attach,
-    capabilities = require("user.lsp.handlers").capabilities,
+    on_attach = require("lsp.handlers").on_attach,
+    capabilities = require("lsp.handlers").capabilities,
   }
 
   server = vim.split(server, "@")[1]
 
   if server == "jsonls" then
-    local jsonls_opts = require "user.lsp.settings.jsonls"
+    local jsonls_opts = require "lsp.settings.jsonls"
     opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
   end
 
-  if server == "sumneko_lua" then
-	 	local sumneko_opts = require("user.lsp.settings.sumneko_lua")
-	 	opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
+  if server == "lua_ls" then
+	 	local lua_ls_opts = require("lsp.settings.lua_ls")
+	 	opts = vim.tbl_deep_extend("force", lua_ls_opts, opts)
   end
 
   if server == "jdtls" then
@@ -63,7 +63,7 @@ for _, server in pairs(servers) do
   end
 
   if server == "dartls" then
-    local dartls_opts = require "user.lsp.settings.dartls"
+    local dartls_opts = require "lsp.settings.dartls"
     local flutter_tools_status_ok, flutter_tools = pcall(require, "flutter-tools")
     if not flutter_tools_status_ok then
       return
@@ -74,7 +74,7 @@ for _, server in pairs(servers) do
   end
 
   if server == "rust_analyzer" then
-    local rust_opts = require "user.lsp.settings.rust"
+    local rust_opts = require "lsp.settings.rust"
     local rust_tools_status_ok, rust_tools = pcall(require, "rust-tools")
     if not rust_tools_status_ok then
       return
@@ -85,7 +85,7 @@ for _, server in pairs(servers) do
   end
 
   if server == "gopls" then
-    local go_opts = require "user.lsp.settings.go"
+    local go_opts = require "lsp.settings.go"
     local go_tools_status_ok, go_tools = pcall(require, "go")
     if not go_tools_status_ok then
       return

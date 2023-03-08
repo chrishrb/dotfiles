@@ -4,10 +4,14 @@ if not status_ok then
 end
 
 local function footer()
-  local plugins = #vim.tbl_keys(packer_plugins)
+  local status_ok_lazy, lazy = pcall(require, "lazy")
+  if not status_ok_lazy then
+    return " ?"
+  end
+  local plugins = lazy.stats()
   local v = vim.version()
   local datetime = os.date " %d-%m-%Y"
-  return string.format(" %s   v%s.%s.%s  %s", plugins, v.major, v.minor, v.patch, datetime)
+  return string.format(" %s  v%s.%s.%s  %s", plugins.count, v.major, v.minor, v.patch, datetime)
 end
 
 local dashboard = require("alpha.themes.dashboard")

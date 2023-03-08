@@ -101,11 +101,6 @@ nvim_tree.setup {
   }
 }
 
--- activate file operations for nvim-tree
-require("lsp-file-operations").setup{
-  debug = false
-}
-
 -- open on startup for directories
 local function open_nvim_tree(data)
   -- buffer is a directory

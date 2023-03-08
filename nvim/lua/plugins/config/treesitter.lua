@@ -18,7 +18,6 @@ configs.setup {
   indent = { enable = true, disable = { "yaml", "python", "java", "terraform" } },
   context_commentstring = {
     enable = true,
-    enable_autocmd = false,
   },
   autotag = {
     enable = true
