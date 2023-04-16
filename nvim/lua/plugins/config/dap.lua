@@ -22,7 +22,6 @@ end
 mason_nvim_dap.setup({
   automatic_setup = true,
 });
-mason_nvim_dap.setup_handlers();
 
 -- dap-ui
 dapui.setup {

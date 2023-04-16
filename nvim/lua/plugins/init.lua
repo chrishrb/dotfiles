@@ -74,12 +74,16 @@ local plugins = {
       "mfussenegger/nvim-jdtls",
       "tamago324/nlsp-settings.nvim",
       -- get documentation when pressing K
-      "chrishrb/hover.nvim",
+      "lewis6991/hover.nvim",
       -- for formatters and linters
       "jose-elias-alvarez/null-ls.nvim",
       -- winbar
       "SmiteshP/nvim-navic",
     },
+  },
+  {
+    "lewis6991/hover.nvim",
+    config = function() require("plugins.config.hover") end,
   },
   { -- show diagnostics of current document/workspace
     "folke/trouble.nvim",
@@ -175,6 +179,7 @@ local plugins = {
   { -- change surround e.g. ys{motion}{char}, ds{char}, cs{target}{replacement}
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to `main` branch for the latest features
+    event = "BufEnter",
     config = true,
   },
   { -- indent line
@@ -242,10 +247,10 @@ local plugins = {
     "vim-scripts/BufOnly.vim",
     event = "BufEnter",
   },
-  { -- use gx to go to link
-    "stsewd/gx-extended.vim",
-    event = "BufEnter",
-  },
+  -- { -- use gx to go to link
+  --   "tyru/open-browser.vim",
+  --   event = "BufEnter",
+  -- },
   { -- delete buffers without closing your window or messing up your layout
     "moll/vim-bbye",
     event = "VeryLazy",
@@ -262,6 +267,16 @@ local plugins = {
   { -- disable certain features if opening big files
     "lunarvim/bigfile.nvim",
     event = { "FileReadPre", "BufReadPre", "User FileOpened" },
+  },
+  { -- disable certain features if opening big files
+    dir = "~/jam-dev/home/gx.nvim",
+    event = { "BufEnter" },
+    config = true,
+    -- config = function() require("gx").setup{
+    --   handlers = {
+    --     plugin = true,
+    --   },
+    -- } end,
   },
 }
 

@@ -194,6 +194,10 @@ setup_software() { #{{{
   check_for_software imagemagick
   check_for_software poetry
   check_for_software cookiecutter
+  check_for_software stylua
+  check_for_software grip # open readme files
+  check_for_software podman # open readme files
+  check_for_software podman-compose # open readme files
 
   if ! [ -x "$(command -v timetrap)" ]; then
     sudo gem install timetrap

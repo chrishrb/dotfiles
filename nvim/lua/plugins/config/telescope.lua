@@ -44,6 +44,26 @@ telescope.setup {
         ["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
       },
     },
+    vimgrep_arguments = {
+      "rg",
+      "--vimgrep",
+      "--hidden",
+      "--smart-case",
+      "--trim"
+    },
+    file_ignore_patterns = {
+      "node_modules",
+      ".git/",
+      ".cache",
+      "%.o",
+      "%.a",
+      "%.out",
+      "%.class",
+      "%.pdf",
+      "%.mkv",
+      "%.mp4",
+      "%.zip"
+    },
   },
   pickers = {
     buffers = {
@@ -54,19 +74,5 @@ telescope.setup {
         }
       }
     },
-    -- Default configuration for builtin pickers goes here:
-    -- picker_name = {
-    --   picker_config_key = value,
-    --   ...
-    -- }
-    -- Now the picker_config_key will be applied every time you call this
-    -- builtin picker
-  },
-  extensions = {
-    -- Your extension configuration goes here:
-    -- extension_name = {
-    --   extension_config_key = value,
-    -- }
-    -- please take a look at the readme of the extension you want to configure
   },
 }

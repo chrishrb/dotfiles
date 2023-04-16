@@ -23,6 +23,9 @@ local servers = {
   "rust_analyzer",
   "gopls",
   "texlab",
+  "volar",
+  "terraformls",
+  "tailwindcss",
 }
 
 mason.setup()
@@ -38,8 +41,6 @@ end
 
 local opts = {}
 
--- not managed by mason
-table.insert(servers, "dartls")
 for _, server in pairs(servers) do
   opts = {
     on_attach = require("lsp.handlers").on_attach,
@@ -59,17 +60,6 @@ for _, server in pairs(servers) do
   end
 
   if server == "jdtls" then
-    goto continue
-  end
-
-  if server == "dartls" then
-    local dartls_opts = require "lsp.settings.dartls"
-    local flutter_tools_status_ok, flutter_tools = pcall(require, "flutter-tools")
-    if not flutter_tools_status_ok then
-      return
-    end
-
-    flutter_tools.setup(dartls_opts)
     goto continue
   end
 
@@ -98,3 +88,11 @@ for _, server in pairs(servers) do
   lspconfig[server].setup(opts)
   ::continue::
 end
+
+-- not managed by mason
+local dartls_opts = require "lsp.settings.dartls"
+local flutter_tools_status_ok, flutter_tools = pcall(require, "flutter-tools")
+if not flutter_tools_status_ok then
+  return
+end
+flutter_tools.setup(dartls_opts)

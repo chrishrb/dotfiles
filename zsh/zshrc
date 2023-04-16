@@ -25,6 +25,7 @@ plug "zap-zsh/fzf"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "zap-zsh/vim"
 plug "paulirish/git-open"
+plug "MichaelAquilina/zsh-autoswitch-virtualenv"
 plug "zsh-users/zsh-autosuggestions"
 plug "zap-zsh/completions" # INFO: plugin must be at the end
 
@@ -36,3 +37,7 @@ zstyle ':completion:*' special-dirs true
 
 # aws
 complete -C '/opt/homebrew/bin/aws_completer' aws
+
+# Add JBang to environment
+alias j!=jbang
+export PATH="$HOME/.jbang/bin:$PATH"
