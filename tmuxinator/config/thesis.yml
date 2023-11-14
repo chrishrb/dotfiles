@@ -1,7 +1,7 @@
 # /Users/cherb/.config/tmuxinator/main.yml
 
-name: rust
-root: ~/jam-dev/study/in5/low-level-programming/
+name: thesis
+root: ~/jam-dev/study/in7/bachelor-thesis/
 
 # Optional tmux socket
 # socket_name: foo
@@ -12,7 +12,7 @@ root: ~/jam-dev/study/in5/low-level-programming/
 # Project hooks
 
 # Runs on project start, always
-# on_project_start: t s aroma
+# on_project_start: t s cris
 
 # Run on project start, the first time
 # on_project_first_start: command
@@ -45,8 +45,7 @@ root: ~/jam-dev/study/in5/low-level-programming/
 # attach: false
 
 windows:
-  -  nvim:
-    # - cd aroma-app && clear
-  -  nvim-config:
-    - vimc
-  -  shell:
+  -  thesis:
+    - cd thesis && clear
+  -  implementation:
+    - cd implementation && clear

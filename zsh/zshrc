@@ -41,3 +41,6 @@ complete -C '/opt/homebrew/bin/aws_completer' aws
 # Add JBang to environment
 alias j!=jbang
 export PATH="$HOME/.jbang/bin:$PATH"
+
+export PATH="/opt/homebrew/opt/krb5/bin:$PATH"
+export PATH="/opt/homebrew/opt/krb5/sbin:$PATH"

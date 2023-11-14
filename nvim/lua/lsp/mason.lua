@@ -26,6 +26,7 @@ local servers = {
   "volar",
   "terraformls",
   "tailwindcss",
+  -- "ltex",
 }
 
 mason.setup()

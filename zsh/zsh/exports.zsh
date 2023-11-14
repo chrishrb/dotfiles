@@ -22,4 +22,4 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 export PATH="/Users/cherb/.rd/bin:$PATH"
-export CDK_DOCKER=podman
+export CDK_DOCKER=docker

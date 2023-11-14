@@ -175,6 +175,20 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bo
 # Stop iTunes from responding to the keyboard media keys
 #launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
 
+# ==============================================
+# Set keyboard preferences on boot
+# ==============================================
+sudo defaults write /Library/Preferences/com.apple.HIToolbox AppleCurrentKeyboardLayoutInputSourceID -string "com.apple.keylayout.German"
+sudo defaults write /Library/Preferences/com.apple.HIToolbox AppleDefaultAsciiInputSource -dict InputSourceKind "Keyboard Layout" "KeyboardLayout ID" -int 3 "KeyboardLayout Name" German
+
+# Delete the default layouts (US)
+sudo defaults delete /Library/Preferences/com.apple.HIToolbox AppleEnabledInputSources
+
+# Enable German layout
+sudo defaults write /Library/Preferences/com.apple.HIToolbox AppleEnabledInputSources -array '{ InputSourceKind = "Keyboard Layout"; "KeyboardLayout ID" = 3; "KeyboardLayout Name" = German; }'
+sudo defaults write /Library/Preferences/com.apple.HIToolbox AppleInputSourceHistory -array '{ InputSourceKind = "Keyboard Layout"; "KeyboardLayout ID" = 3; "KeyboardLayout Name" = German; }'
+sudo defaults write /Library/Preferences/com.apple.HIToolbox AppleSelectedInputSources -array '{ InputSourceKind = "Keyboard Layout"; "KeyboardLayout ID" = 3; "KeyboardLayout Name" = German; }'
+
 ###############################################################################
 # MacBookPro Touch Bar                                                        #
 ###############################################################################
@@ -626,24 +640,6 @@ defaults write com.apple.messageshelper.MessageController SOInputLineSettings -d
 
 # Disable continuous spell checking
 defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
-
-###############################################################################
-# Vivaldi
-###############################################################################
-
-# Disable the all too sensitive backswipe on trackpads
-defaults write com.vivaldi.Vivaldi.plist AppleEnableSwipeNavigateWithScrolls -bool false
-
-# Disable the all too sensitive backswipe on Magic Mouse
-defaults write com.vivaldi.Vivaldi.plist AppleEnableMouseSwipeNavigateWithScrolls -bool false
-
-# Use the system-native print preview dialog
-defaults write com.vivaldi.Vivaldi DisablePrintPreview -bool true
-
-# Expand the print dialog by default
-defaults write com.vivaldi.Vivaldi PMPrintingExpandedStateForPrint2 -bool true
-
-defaults write ~/Library/Preferences/org.gpgtools.gpgmail SignNewEmailsByDefault -bool false
 
 ###############################################################################
 # Kill affected applications                                                  #

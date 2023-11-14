@@ -4,13 +4,15 @@
 export EDITOR="nvim"
 
 # Go, Rust, ruby
-export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
 export PATH="$HOME/bin/jdt-language-server-1.9.0-202203031534/bin:$PATH"
 
-export GOPATH="$HOME/go"
+export GOPATH="$HOME/golang"
+export GOROOT="/opt/homebrew/opt/go/libexec"
+export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:$GOROOT/bin"
 
 # increase speed in git repos
 RPROMPT=''

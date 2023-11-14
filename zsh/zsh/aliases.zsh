@@ -3,7 +3,7 @@
 ## navigation aliases
 alias dev="cd ~/jam-dev/"
 alias home="cd ~/jam-dev/home/"
-alias study="cd ~/jam-dev/study/in6/"
+alias study="cd ~/jam-dev/study/in7/"
 alias work="cd ~/jam-dev/work/cris/"
 
 ## other
@@ -16,8 +16,6 @@ alias copy="pbcopy"
 alias brewup="brew update; brew upgrade; brew cleanup; brew doctor"
 alias vimup="brew upgrade neovim --fetch-HEAD"
 alias grep="rg"
-alias docker='podman'
-alias docker-compose='podman-compose'
 alias grip="grip -b"
 
 ## vim,tmux,zsh

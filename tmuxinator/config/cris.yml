@@ -47,10 +47,8 @@ root: ~/jam-dev/work/cris/
 windows:
   -  cris-infra:
     - cd cris-infrastructure && clear
-  -  cris-devops:
-    - cd cris-devops && clear
-  -  cris-cdk:
-    - cd cris-cdk-lib && clear
+  -  cris-config:
+    - cd cris-config && clear
   -  cris-monitoring:
     - cd cris-monitoring && clear
   -  cris-frontend:
