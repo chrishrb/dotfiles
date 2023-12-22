@@ -1,3 +1,5 @@
+local icons = require "config.icons"
+
 local M = {}
 
 local function location_handler(_, result, ctx)
@@ -21,10 +23,10 @@ end
 
 M.setup = function()
   local signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
+    { name = "DiagnosticSignError", text = icons.diagnostics.Error },
+    { name = "DiagnosticSignWarn", text = icons.diagnostics.Warning },
+    { name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
+    { name = "DiagnosticSignInfo", text = icons.diagnostics.Information },
   }
 
   for _, sign in ipairs(signs) do
@@ -78,7 +80,7 @@ end
 local function lsp_highlight_document(client)
   -- Set autocommands conditional on server_capabilities
   if client.server_capabilities.document_highlight then
-    vim.api.nvim_exec(
+    vim.api.nvim_exec2(
       [[
       augroup lsp_document_highlight
         autocmd! * <buffer>
@@ -86,7 +88,7 @@ local function lsp_highlight_document(client)
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
     ]] ,
-      false
+      { output = false }
     )
   end
 end

@@ -1,3 +1,5 @@
+local icons = require "config.icons"
+
 local colors = {
 	red = '#cdd6f4',
 	grey = '#181825',
@@ -23,9 +25,9 @@ local theme = {
 
 local vim_icons = {
 	function()
-		return ""
+		return icons.misc.Apple
 	end,
-	separator = { left = "", right = "" },
+	separator = { left = icons.ui.HalfCircleLeft, right = icons.ui.HalfCircleRight },
 	color = { bg = "#313244", fg = "#80A7EA" },
 }
 
@@ -39,7 +41,7 @@ local space = {
 local filename = {
 	'filename',
 	color = { bg = "#80A7EA", fg = "#242735" },
-	separator = { left = "", right = "" },
+	separator = { left = icons.ui.HalfCircleLeft, right = icons.ui.HalfCircleRight },
 }
 
 local filetype = {
@@ -47,47 +49,47 @@ local filetype = {
 	icon_only = true,
 	colored = true,
 	color = { bg = "#313244" },
-	separator = { left = "", right = "" },
+	separator = { left = icons.ui.HalfCircleLeft, right = icons.ui.HalfCircleRight },
 }
 
 local buffer = {
 	require 'tabline'.tabline_buffers,
-	separator = { left = "", right = "" },
+	separator = { left = icons.ui.HalfCircleLeft, right = icons.ui.HalfCircleRight },
 }
 
 local tabs = {
 	require 'tabline'.tabline_tabs,
-	separator = { left = "", right = "" },
+	separator = { left = icons.ui.HalfCircleLeft, right = icons.ui.HalfCircleRight },
 }
 
 local fileformat = {
 	'fileformat',
 	color = { bg = "#b4befe", fg = "#313244" },
-	separator = { left = "", right = "" },
+	separator = { left = icons.ui.HalfCircleLeft, right = icons.ui.HalfCircleRight },
 }
 
 local encoding = {
 	'encoding',
 	color = { bg = "#313244", fg = "#80A7EA" },
-	separator = { left = "", right = "" },
+	separator = { left = icons.ui.HalfCircleLeft, right = icons.ui.HalfCircleRight },
 }
 
 local branch = {
 	'branch',
 	color = { bg = "#a6e3a1", fg = "#313244" },
-	separator = { left = "", right = "" },
+	separator = { left = icons.ui.HalfCircleLeft, right = icons.ui.HalfCircleRight },
 }
 
 local diff = {
 	"diff",
 	color = { bg = "#313244", fg = "#313244" },
-	separator = { left = "", right = "" },
+	separator = { left = icons.ui.HalfCircleLeft, right = icons.ui.HalfCircleRight },
 }
 
 local modes = {
 	'mode', fmt = function(str) return str:sub(1, 1) end,
-	color = { bg = "#fab387		", fg = "#1e1e2e" },
-	separator = { left = "", right = "" },
+	color = { bg = "#fab387", fg = "#1e1e2e" },
+	separator = { left = icons.ui.HalfCircleLeft, right = icons.ui.HalfCircleRight },
 }
 
 local function getLspName()
@@ -100,23 +102,23 @@ local function getLspName()
 	for _, client in ipairs(clients) do
 		local filetypes = client.config.filetypes
 		if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-			return "  " .. client.name
+			return icons.ui.Gear .. client.name
 		end
 	end
-	return "  " .. msg
+	return icons.ui.Gear .. msg
 end
 
 local dia = {
 	'diagnostics',
 	color = { bg = "#313244", fg = "#80A7EA" },
-	separator = { left = "", right = "" },
+	separator = { left = icons.ui.HalfCircleLeft, right = icons.ui.HalfCircleRight },
 }
 
 local lsp = {
 	function()
 		return getLspName()
 	end,
-	separator = { left = "", right = "" },
+	separator = { left = icons.ui.HalfCircleLeft, right = icons.ui.HalfCircleRight },
 	color = { bg = "#f38ba8", fg = "#1e1e2e" },
 }
 

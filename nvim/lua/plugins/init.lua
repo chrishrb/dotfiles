@@ -185,9 +185,10 @@ local plugins = {
   { -- indent line
     "lukas-reineke/indent-blankline.nvim",
     config = function()
-      require("indent_blankline").setup()
+      require("plugins.config.indentline")
     end,
-    event = "User FileOpened",
+    main = "ibl",
+    event = "VeryLazy",
   },
 
   { -- comment in/out with gc and gcc

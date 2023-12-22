@@ -6,6 +6,8 @@ if not status_ok then
   return
 end
 
+local icons = require "config.icons"
+
 nvim_tree.setup {
   disable_netrw = true,
   hijack_netrw = true,
@@ -18,10 +20,10 @@ nvim_tree.setup {
   diagnostics = {
     enable = false,
     icons = {
-      hint = "",
-      info = "",
-      warning = "",
-      error = "",
+      hint = icons.diagnostics.BoldHint,
+      info = icons.diagnostics.BoldInformation,
+      warning = icons.diagnostics.BoldWarning,
+      error = icons.diagnostics.BoldError,
     },
   },
   update_focused_file = {
@@ -62,23 +64,23 @@ nvim_tree.setup {
   renderer = {
     icons = {
       glyphs = {
-        default = "",
-        symlink = "",
+        default = icons.ui.Text:gsub("%s+", ""), -- remove spaces from Text symbol
+        symlink = icons.ui.FileSymlink,
         git = {
-          unstaged = "",
-          staged = "S",
-          unmerged = "",
-          renamed = "➜",
-          deleted = "",
-          untracked = "U",
-          ignored = "◌",
+          unstaged = icons.git.FileUnstaged,
+          staged = icons.git.FileStaged,
+          unmerged = icons.git.FileUnmerged,
+          renamed = icons.git.FileRenamed,
+          deleted = icons.git.FileDeleted,
+          untracked = icons.git.FileUntracked,
+          ignored = icons.git.FileIgnored,
         },
         folder = {
-          default = "",
-          open = "",
-          empty = "",
-          empty_open = "",
-          symlink = "",
+          default = icons.ui.Folder,
+          open = icons.ui.FolderOpen,
+          empty = icons.ui.EmptyFolder,
+          empty_open = icons.ui.EmptyFolderOpen,
+          symlink = icons.ui.FolderSymlink,
         },
       }
     }

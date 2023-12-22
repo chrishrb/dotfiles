@@ -18,8 +18,16 @@ if not nvim_dap_virtual_text_status_ok then
   return
 end
 
+local icons = require "config.icons"
+
 -- mason-nvim-dap
 mason_nvim_dap.setup({
+  -- see https://github.com/jay-babu/mason-nvim-dap.nvim/blob/main/lua/mason-nvim-dap/mappings/source.lua
+  ensure_installed = {
+    "python", -- python
+    "delve", -- go
+  },
+  handlers = {},
   automatic_setup = true,
 });
 
@@ -79,7 +87,8 @@ dapui.setup {
     max_type_length = nil, -- Can be integer or nil.
   },
 }
-vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticSignError", linehl = "", numhl = "" })
+vim.fn.sign_define("DapBreakpoint", { text = icons.ui.Bug, texthl = "DiagnosticSignError", linehl = "", numhl = "" })
+vim.fn.sign_define("DapStopped", { text = icons.ui.BoldArrowRight, texthl = "DiagnosticSignWarn", linehl = "Visual", numhl = "DiagnosticSignWarn" })
 
 -- nvim dap visual line
 nvim_dap_virtual_text.setup()

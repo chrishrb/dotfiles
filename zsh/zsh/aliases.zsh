@@ -17,6 +17,7 @@ alias brewup="brew update; brew upgrade; brew cleanup; brew doctor"
 alias vimup="brew upgrade neovim --fetch-HEAD"
 alias grep="rg"
 alias grip="grip -b"
+alias drawio="/Applications/draw.io.app/Contents/MacOS/draw.io"
 
 ## vim,tmux,zsh
 alias vim='nvim'
@@ -26,3 +27,11 @@ alias tm=tmuxinator
 alias zshconfig="nvim ~/.zshrc"
 alias zshreload="source ~/.zshrc"
 alias ssh="TERM=xterm-256color ssh" # needed for ssh to work properly
+
+## terraform
+alias tf='terraform'
+alias tfv='terraform validate'
+alias tfi='terraform init'
+alias tfp='terraform plan'
+alias tfa='terraform apply'
+alias tfm='terraform fmt -recursive'
