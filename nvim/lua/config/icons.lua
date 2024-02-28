@@ -26,7 +26,7 @@ return {
     Package = " ",
     Property = " ",
     Reference = " ",
-    Snippet = " ",
+    Snippet = " ",
     String = " ",
     Struct = " ",
     Text = " ",
@@ -34,6 +34,7 @@ return {
     Unit = " ",
     Value = " ",
     Variable = " ",
+    Copilot = "",
   },
   git = {
     LineAdded = "",

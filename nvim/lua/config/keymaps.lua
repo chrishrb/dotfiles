@@ -79,8 +79,3 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 -- Execute commands
 keymap("x", "x", "yPgv:!zsh<CR>", opts)
-
--- better gx without netrw
-vim.g.netrw_nogx = 1 -- disable netrw gx
-keymap("n", "gx", "<Plug>(openbrowser-smart-search)", opts)
-keymap("v", "gx", "<Plug>(openbrowser-smart-search)", opts)

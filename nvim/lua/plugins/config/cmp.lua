@@ -15,6 +15,12 @@ local check_backspace = function()
   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
 end
 
+local has_words_before = function()
+  if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match("^%s*$") == nil
+end
+
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -37,7 +43,7 @@ cmp.setup {
     -- Set `select` to `false` to only confirm explicitly selected items.
     ["<CR>"] = cmp.mapping.confirm { select = true },
     ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
+      if cmp.visible() and has_words_before() then
         cmp.select_next_item()
       elseif luasnip.expandable() then
         luasnip.expand()
@@ -76,11 +82,15 @@ cmp.setup {
         nvim_lsp = "[LSP]",
         buffer = "[Buffer]",
         path = "[Path]",
+        copilot = "[Copilot]",
       })[entry.source.name]
       return vim_item
     end,
   },
   sources = {
+    -- copilot
+    { name = "copilot" },
+    -- other
     { name = "nvim_lsp" },
     { name = "luasnip" },
     { name = "buffer" },
@@ -98,5 +108,23 @@ cmp.setup {
   experimental = {
     ghost_text = false,
     native_menu = false,
+  },
+  sorting = {
+    priority_weight = 2,
+    comparators = {
+      require("copilot_cmp.comparators").prioritize,
+
+      -- Below is the default comparitor list and order for nvim-cmp
+      cmp.config.compare.offset,
+      -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+      cmp.config.compare.exact,
+      cmp.config.compare.score,
+      cmp.config.compare.recently_used,
+      cmp.config.compare.locality,
+      cmp.config.compare.kind,
+      cmp.config.compare.sort_text,
+      cmp.config.compare.length,
+      cmp.config.compare.order,
+    },
   },
 }

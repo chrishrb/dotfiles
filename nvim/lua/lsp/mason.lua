@@ -19,7 +19,6 @@ local servers = {
   "pyright",
   "yamlls",
   "bashls",
-  "clangd",
   "rust_analyzer",
   "gopls",
   "texlab",
@@ -93,7 +92,8 @@ end
 -- not managed by mason
 local dartls_opts = require "lsp.settings.dartls"
 local flutter_tools_status_ok, flutter_tools = pcall(require, "flutter-tools")
-if not flutter_tools_status_ok then
-  return
+if flutter_tools_status_ok then
+  flutter_tools.setup(dartls_opts)
 end
-flutter_tools.setup(dartls_opts)
+
+require("lsp.settings.pls")

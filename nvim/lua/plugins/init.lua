@@ -135,6 +135,20 @@ local plugins = {
     },
     config = function () require("plugins.config.snippet") end,
   },
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("plugins.config.copilot")
+    end,
+  },
+  {
+    "zbirenbaum/copilot-cmp",
+    config = function ()
+      require("copilot_cmp").setup()
+    end
+  },
 
   -----------------------------------------------------------------------------
   -- Treesitter
@@ -271,7 +285,11 @@ local plugins = {
   },
   { -- disable certain features if opening big files
     dir = "~/jam-dev/home/gx.nvim",
-    event = { "BufEnter" },
+    keys = { { "gx", "<cmd>Browse<cr>", mode = { "n", "x" }} },
+    cmd = { "Browse" },
+    init = function ()
+      vim.g.netrw_nogx = 1 -- disable netrw gx
+    end,
     config = true,
     -- config = function() require("gx").setup{
     --   handlers = {

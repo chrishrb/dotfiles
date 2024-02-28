@@ -67,14 +67,24 @@ M.setup = function()
   vim.lsp.handlers['textDocument/definition'] = location_handler
   vim.lsp.handlers['textDocument/typeDefinition'] = location_handler
   vim.lsp.handlers['textDocument/implementation'] = location_handler
-  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = function (_, result, ctx, config)
+    if not result.diagnostics then
+      -- INFO: workaround for pls.lua, remove afterwards
+      local namespace = vim.lsp.diagnostic.get_namespace(ctx.client_id, false)
+      local uri = result.uri
+      local fname = vim.uri_to_fname(uri)
+      local bufnr = vim.fn.bufadd(fname)
+      vim.diagnostic.set(namespace, bufnr, {})
+      return
+    end
+
+    vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, {
       virtual_text = true,
       underline = true,
       signs = true,
       update_in_insert = true
-    }
-  )
+    })
+  end
 end
 
 local function lsp_highlight_document(client)
